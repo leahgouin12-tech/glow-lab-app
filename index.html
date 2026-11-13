@@ -8,12 +8,15 @@
       name="description"
       content="THE GLOW LAB — personal appearance intelligence platform. Local-first, private by default, works offline."
     />
+    <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Glow Lab" />
     <!-- Safari on iOS ignores the manifest and uses this icon for an Add to Home
-         Screen install; without it the bookmark lands with a screenshot tile. -->
-    <link rel="apple-touch-icon" href="./icons/icon-192.png" />
+         Screen install; without it the bookmark lands with a screenshot tile.
+         512 rather than 192 because the tile is composited at 3x on a modern
+         iPhone, and a soft icon is the first thing that makes an app look cheap. -->
+    <link rel="apple-touch-icon" href="./icons/icon-512.png" />
     <link rel="icon" href="./icons/icon.svg" />
     <title>THE GLOW LAB</title>
   </head>
