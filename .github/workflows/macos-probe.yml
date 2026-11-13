@@ -1,0 +1,32 @@
+name: macOS runner probe
+
+# Temporary. Three labels, one trivial step each, so the answer is which label
+# GitHub will actually allocate to this account. Nothing here costs anything if
+# the allocation fails: a cancelled job never boots a runner and never bills.
+# Delete after reading the verdict.
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  latest:
+    name: macos-latest
+    runs-on: macos-latest
+    timeout-minutes: 4
+    steps:
+      - run: echo "allocated"; sw_vers; xcodebuild -version
+  mac15:
+    name: macos-15
+    runs-on: macos-15
+    timeout-minutes: 4
+    steps:
+      - run: echo "allocated"; sw_vers
+  mac14:
+    name: macos-14
+    runs-on: macos-14
+    timeout-minutes: 4
+    steps:
+      - run: echo "allocated"; sw_vers
