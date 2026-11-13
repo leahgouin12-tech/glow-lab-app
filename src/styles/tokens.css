@@ -1,0 +1,291 @@
+/* =====================================================================
+   THE GLOW LAB — design tokens
+   Dark Femme Editorial. Three genuinely distinct themes:
+     OBSIDIAN  · near-black, silver, restrained rose  (most minimal)
+     OXBLOOD   · default signature: black/oxblood/plum/champagne
+     EDITORIAL · mixed light+dark magazine: ivory plates, espresso ink
+   Every component consumes these semantics only. No literal hex in views.
+   ===================================================================== */
+
+:root {
+  /* ---------- typography roles (theme-independent) ---------- */
+  --glow-font-display: 'Cormorant Garamond', 'Didot', 'Bodoni MT', Georgia, serif;
+  --glow-font-ui: 'Manrope Variable', 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --glow-font-tech: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --glow-text-hero: clamp(2.6rem, 7vw, 5rem);
+  --glow-text-display: clamp(1.9rem, 4vw, 3.1rem);
+  --glow-text-title: clamp(1.35rem, 2.6vw, 1.9rem);
+  --glow-text-subtitle: 1.075rem;
+  --glow-text-body: 0.95rem;
+  --glow-text-small: 0.83rem;
+  --glow-text-micro: 0.7rem;
+
+  --glow-tracking-display: -0.018em;
+  --glow-tracking-label: 0.2em;
+  --glow-tracking-tech: 0.02em;
+
+  /* ---------- spacing ---------- */
+  --glow-sp-1: 4px;
+  --glow-sp-2: 8px;
+  --glow-sp-3: 12px;
+  --glow-sp-4: 16px;
+  --glow-sp-5: 22px;
+  --glow-sp-6: 30px;
+  --glow-sp-7: 42px;
+  --glow-sp-8: 58px;
+
+  /* ---------- radii: intentional and varied, never uniformly pill-round ---------- */
+  --glow-r-plate: 2px;
+  --glow-r-card: 6px;
+  --glow-r-inset: 3px;
+  --glow-r-tile: 4px;
+  --glow-r-control: 2px;
+  --glow-r-pill: 999px;
+
+  /* ---------- warm accents, resolved against whichever theme is active ---------- */
+  --glow-r-sm: var(--glow-r-control);
+  --glow-gold: var(--glow-champagne);
+  --glow-champagne-400: var(--glow-champagne);
+  --glow-champagne-300: color-mix(in srgb, var(--glow-champagne) 78%, #ffffff);
+  --glow-line-gold: color-mix(in srgb, var(--glow-champagne) 46%, transparent);
+  --glow-rose-300: color-mix(in srgb, var(--glow-accent-soft) 74%, var(--glow-text));
+
+  /* ---------- motion ---------- */
+  --glow-ease: cubic-bezier(0.2, 0.65, 0.28, 1);
+  --glow-dur-1: 130ms;
+  --glow-dur-2: 240ms;
+  --glow-dur-3: 400ms;
+  --glow-dur-4: 640ms;
+
+  /* ---------- layout ---------- */
+  --glow-rail-w: 274px;
+  --glow-rail-w-collapsed: 74px;
+  --glow-tabbar-h: 60px;
+  --glow-topbar-h: 60px;
+  --glow-content-max: 1620px;
+  --glow-reading-max: 68ch;
+
+  /* ---------- imagery ---------- */
+  --glow-img-scrim: linear-gradient(to top, rgba(6, 4, 7, 0.94) 2%, rgba(6, 4, 7, 0.42) 44%, transparent 76%);
+  --glow-img-scrim-side: linear-gradient(100deg, rgba(6, 4, 7, 0.92) 0%, rgba(6, 4, 7, 0.5) 38%, transparent 72%);
+  --glow-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  --glow-fiber: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Cpath d='M0 5.5h6M0 0.5h6' stroke='%23ffffff' stroke-opacity='0.05'/%3E%3C/svg%3E");
+}
+
+/* ==========================================================================
+   THEME 01 — OBSIDIAN
+   ========================================================================== */
+:root[data-theme='obsidian'] {
+  --glow-canvas: #050507;
+  --glow-canvas-2: #0b0b0f;
+  --glow-surface: #101015;
+  --glow-surface-raised: #16161d;
+  --glow-surface-sunken: #08080b;
+  --glow-surface-inset: #0a0a0e;
+  --glow-interactive: #1c1c25;
+  --glow-interactive-hover: #24242f;
+  --glow-plate: #0d0d12;
+  --glow-plate-text: #e9e7ea;
+  --glow-nav: #08080c;
+
+  --glow-text: #e6e4e8;
+  --glow-text-strong: #f6f5f8;
+  --glow-text-secondary: #b3b2ba;
+  --glow-text-muted: #8d8d99;
+  --glow-text-faint: #6a6a76;
+  --glow-text-inverse: #0a0a0d;
+  --glow-text-on-accent: #f4f2f5;
+
+  --glow-accent: #4c3d44;
+  --glow-accent-hover: #63505a;
+  --glow-accent-soft: #8f6f7c;
+  --glow-accent-ink: #f2eff2;
+  --glow-metal: #c3c6cf;
+  --glow-metal-dim: #8e929d;
+  --glow-highlight: #a9858f;
+  --glow-plum: #241a22;
+  --glow-champagne: #c0a97c;
+  --glow-grain-opacity: 0.014;
+
+  --glow-line: rgba(226, 226, 235, 0.1);
+  --glow-line-strong: rgba(226, 226, 235, 0.22);
+  --glow-line-metal: rgba(195, 198, 207, 0.34);
+  --glow-focus: #c3c6cf;
+  --glow-disabled: rgba(226, 226, 235, 0.28);
+
+  --glow-ok: #74a68a;
+  --glow-warn: #c2a86f;
+  --glow-bad: #c46a68;
+  --glow-info: #8ea1bd;
+
+  --glow-el-1: 0 1px 0 rgba(255, 255, 255, 0.028), 0 8px 22px -16px rgba(0, 0, 0, 0.9);
+  --glow-el-2: 0 1px 0 rgba(255, 255, 255, 0.035), 0 22px 46px -26px rgba(0, 0, 0, 0.95);
+  --glow-el-3: 0 1px 0 rgba(255, 255, 255, 0.045), 0 40px 80px -34px rgba(0, 0, 0, 1);
+  --glow-halo: 0 0 0 1px var(--glow-line-metal), 0 14px 40px -24px rgba(195, 198, 207, 0.22);
+
+  --glow-chart-1: #c3c6cf;
+  --glow-chart-2: #a9858f;
+  --glow-chart-3: #8ea1bd;
+  --glow-chart-4: #74a68a;
+  --glow-chart-5: #c2a86f;
+  --glow-chart-6: #6f6b78;
+  --glow-ev-strong: #74a68a;
+  --glow-ev-moderate: #c2a86f;
+  --glow-ev-limited: #c08a6a;
+  --glow-ev-weak: #a8788a;
+  --glow-ev-danger: #c46a68;
+  --glow-img-scrim: linear-gradient(to top, rgba(4, 4, 6, 0.95) 2%, rgba(4, 4, 6, 0.44) 45%, transparent 78%);
+}
+
+/* ==========================================================================
+   THEME 02 — OXBLOOD (default)
+   ========================================================================== */
+:root[data-theme='oxblood'],
+:root:not([data-theme]) {
+  --glow-canvas: #0a0608;
+  --glow-canvas-2: #100a0d;
+  --glow-surface: #171015;
+  --glow-surface-raised: #1f161c;
+  --glow-surface-sunken: #0d0709;
+  --glow-surface-inset: #120b0f;
+  --glow-interactive: #241820;
+  --glow-interactive-hover: #2f202a;
+  --glow-plate: #140b11;
+  --glow-plate-text: #f1e7de;
+  --glow-nav: #0c0709;
+
+  --glow-text: #eee4dc;
+  --glow-text-strong: #f8f1e9;
+  --glow-text-secondary: #c2b2ae;
+  --glow-text-muted: #9d8b8b;
+  --glow-text-faint: #7b6a6e;
+  --glow-text-inverse: #14090c;
+  --glow-text-on-accent: #f7ece6;
+
+  --glow-accent: #6d1a2c;
+  --glow-accent-hover: #852238;
+  --glow-accent-soft: #a8304a;
+  --glow-accent-ink: #fbeee9;
+  --glow-metal: #ded9d4;
+  --glow-metal-dim: #a89ea0;
+  --glow-highlight: #c08a92;
+  --glow-plum: #35182b;
+  --glow-champagne: #e2c49a;
+
+  --glow-line: rgba(238, 224, 212, 0.1);
+  --glow-line-strong: rgba(238, 224, 212, 0.22);
+  --glow-line-metal: rgba(226, 196, 154, 0.3);
+  --glow-focus: #e2c49a;
+  --glow-disabled: rgba(238, 224, 212, 0.26);
+
+  --glow-ok: #7aa98c;
+  --glow-warn: #d0a95f;
+  --glow-bad: #cf5f5b;
+  --glow-info: #92a8c8;
+
+  --glow-el-1: 0 1px 0 rgba(255, 240, 228, 0.03), 0 8px 22px -16px rgba(0, 0, 0, 0.9);
+  --glow-el-2: 0 1px 0 rgba(255, 240, 228, 0.04), 0 22px 46px -26px rgba(0, 0, 0, 0.95);
+  --glow-el-3: 0 1px 0 rgba(255, 240, 228, 0.05), 0 40px 80px -34px rgba(0, 0, 0, 1);
+  --glow-halo: 0 0 0 1px var(--glow-line-metal), 0 16px 44px -26px rgba(226, 196, 154, 0.3);
+
+  --glow-chart-1: #e2c49a;
+  --glow-chart-2: #a8304a;
+  --glow-chart-3: #c08a92;
+  --glow-chart-4: #6d5a86;
+  --glow-chart-5: #7aa98c;
+  --glow-chart-6: #d0a95f;
+  --glow-ev-strong: #7aa98c;
+  --glow-ev-moderate: #d0a95f;
+  --glow-ev-limited: #cf8b5c;
+  --glow-ev-weak: #b57387;
+  --glow-ev-danger: #cf5f5b;
+}
+
+/* ==========================================================================
+   THEME 03 — EDITORIAL
+   Warm publication surfaces + espresso plates. Not an inversion:
+   text weight, rules and photography treatments are re-derived.
+   ========================================================================== */
+:root[data-theme='editorial'] {
+  --glow-canvas: #f1eae0;
+  --glow-canvas-2: #e8dfd3;
+  --glow-surface: #faf6ef;
+  --glow-surface-raised: #fffdf8;
+  --glow-surface-sunken: #eae0d3;
+  --glow-surface-inset: #f4ede3;
+  --glow-interactive: #e6dbcc;
+  --glow-interactive-hover: #dcd0be;
+  --glow-plate: #1b1310;
+  --glow-plate-text: #f4ece2;
+  --glow-nav: #201614;
+
+  --glow-text: #2b201d;
+  --glow-text-strong: #17100d;
+  --glow-text-secondary: #584946;
+  --glow-text-muted: #736360;
+  --glow-text-faint: #8d7c78;
+  --glow-text-inverse: #f7f1e8;
+  --glow-text-on-accent: #fdf7ef;
+
+  --glow-accent: #5e1b2c;
+  --glow-accent-hover: #742436;
+  --glow-accent-soft: #9c4356;
+  --glow-accent-ink: #fdf4ee;
+  --glow-metal: #9b7f52;
+  --glow-metal-dim: #8a6f47;
+  --glow-highlight: #b08d86;
+  --glow-plum: #3b2436;
+  --glow-champagne: #9b7f52;
+
+  --glow-line: rgba(43, 30, 26, 0.14);
+  --glow-line-strong: rgba(43, 30, 26, 0.28);
+  --glow-line-metal: rgba(155, 127, 82, 0.42);
+  --glow-focus: #5e1b2c;
+  --glow-disabled: rgba(43, 30, 26, 0.3);
+
+  --glow-ok: #4e7a5c;
+  --glow-warn: #9a7426;
+  --glow-bad: #a83a38;
+  --glow-info: #4c6485;
+
+  --glow-el-1: 0 1px 0 rgba(255, 255, 255, 0.6), 0 8px 20px -16px rgba(60, 36, 28, 0.4);
+  --glow-el-2: 0 1px 0 rgba(255, 255, 255, 0.7), 0 22px 44px -28px rgba(60, 36, 28, 0.44);
+  --glow-el-3: 0 1px 0 rgba(255, 255, 255, 0.75), 0 40px 76px -36px rgba(40, 22, 18, 0.5);
+  --glow-halo: 0 0 0 1px var(--glow-line-metal), 0 16px 40px -26px rgba(94, 27, 44, 0.28);
+
+  --glow-chart-1: #5e1b2c;
+  --glow-chart-2: #9b7f52;
+  --glow-chart-3: #4c6485;
+  --glow-chart-4: #4e7a5c;
+  --glow-chart-5: #9c4356;
+  --glow-chart-6: #6b5b4a;
+  --glow-ev-strong: #4e7a5c;
+  --glow-ev-moderate: #9a7426;
+  --glow-ev-limited: #a4643a;
+  --glow-ev-weak: #8c5a6c;
+  --glow-ev-danger: #a83a38;
+
+  --glow-img-scrim: linear-gradient(to top, rgba(24, 14, 12, 0.9) 2%, rgba(24, 14, 12, 0.34) 46%, transparent 78%);
+  --glow-grain-opacity: 0.02;
+}
+
+/* ---------- density + type scale (cross-theme) ---------- */
+:root[data-density='compact'] {
+  --glow-sp-4: 12px;
+  --glow-sp-5: 16px;
+  --glow-sp-6: 21px;
+  --glow-sp-7: 27px;
+  --glow-sp-8: 38px;
+}
+:root[data-type='large'] {
+  --glow-text-body: 1.06rem;
+  --glow-text-small: 0.92rem;
+  --glow-text-micro: 0.78rem;
+}
+:root[data-motion='reduced'] {
+  --glow-dur-1: 0ms;
+  --glow-dur-2: 0ms;
+  --glow-dur-3: 0ms;
+  --glow-dur-4: 0ms;
+}

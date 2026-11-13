@@ -1,0 +1,32 @@
+{
+  "name": "Glow Lab (personal)",
+  "subtitle": "Your own build of THE GLOW LAB, signed with your Apple ID.",
+  "description": "THE GLOW LAB is a local-first personal appearance, wardrobe, fitness and discovery platform. Everything is stored on the device; there is no account, no server and no subscription. This source serves the copy you built, so the records are yours alone.",
+  "iconURL": "https://REPLACE-YOUR-HOSTING/altstore/source-icon-512.png",
+  "website": "https://REPLACE-YOUR-HOSTING/",
+  "tintColor": "#a83052",
+  "apps": [
+    {
+      "name": "Glow Lab",
+      "bundleIdentifier": "com.glowlab.iphone",
+      "developerName": "REPLACE-YOUR-NAME",
+      "subtitle": "Local-first appearance, wardrobe and training records.",
+      "localizedDescription": "Thirty departments over one local database: closet arithmetic and coverage, the week planner, fit sheets composed from photographs of your own garments, matched-framing progress sets, measurements, training logs, trend reads over the numbers you typed, and a discovery feed. Nothing is required to be online. Photos and measurements are private by default, and every optional behaviour sits behind a switch that ships off.",
+      "iconURL": "https://REPLACE-YOUR-HOSTING/altstore/AppIcon-1024.png",
+      "category": "lifestyle",
+      "screenshots": [
+        "https://REPLACE-YOUR-HOSTING/altstore/screenshot-1.png"
+      ],
+      "versions": [
+        {
+          "version": "0.7.0",
+          "date": "2026-11-13",
+          "size": 0,
+          "downloadURL": "https://REPLACE-YOUR-HOSTING/altstore/GlowLab-0.7.0.ipa",
+          "whatsNew": "Coverage matrix and the week planner, the closet glance on the dashboard, a training digest, per-department CSV export, a duplicate review queue, the untagged-piece tagging pass, a derailment record, and the N-shot same-framing capture set."
+        }
+      ]
+    }
+  ],
+  "news": []
+}

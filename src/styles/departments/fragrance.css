@@ -1,0 +1,204 @@
+/* DEPT 20 · FRAGRANCE — archive art direction: apothecary index cards, ruled shelves, ink labels. */
+
+.fr-page .gl-intro--archive {
+  margin-bottom: var(--glow-sp-5);
+}
+
+.fr-toolbar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) auto;
+  gap: var(--glow-sp-4);
+  align-items: end;
+  border-bottom: 1px solid var(--glow-line-strong);
+  padding-bottom: var(--glow-sp-4);
+  margin-bottom: var(--glow-sp-4);
+}
+
+.fr-search {
+  margin: 0;
+}
+
+.fr-num {
+  font-family: var(--glow-font-tech);
+  font-variant-numeric: tabular-nums;
+  color: var(--glow-text-strong);
+}
+
+.fr-flags {
+  margin: var(--glow-sp-2) 0 0;
+  padding-left: var(--glow-sp-4);
+  display: grid;
+  gap: 3px;
+  color: var(--glow-text-secondary);
+}
+
+.fr-notes {
+  display: grid;
+  gap: var(--glow-sp-4);
+  padding: var(--glow-sp-2) 0 var(--glow-sp-4);
+}
+
+.fr-noteblock {
+  display: grid;
+  gap: var(--glow-sp-3);
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-4);
+}
+
+.fr-noteblock__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--glow-sp-3);
+  border-bottom: 1px dashed var(--glow-line-strong);
+  padding-bottom: var(--glow-sp-2);
+  color: var(--glow-text-strong);
+}
+
+.fr-chiprow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: calc(var(--glow-sp-2) * -1);
+}
+
+.fr-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: var(--glow-sp-3) var(--glow-sp-4);
+  padding: var(--glow-sp-4);
+  border-top: 1px solid var(--glow-line);
+  background: var(--glow-surface-inset);
+}
+
+.fr-diary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: var(--glow-sp-4);
+  margin-top: var(--glow-sp-4);
+}
+
+.fr-test__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--glow-sp-3);
+  margin-top: 6px;
+  font-family: var(--glow-font-tech);
+  font-size: 0.68rem;
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-muted);
+}
+
+.fr-test__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.fr-budget {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--glow-sp-3);
+  border-block: 1px solid var(--glow-line);
+  background: var(--glow-surface-sunken);
+  padding: var(--glow-sp-4);
+  margin-bottom: var(--glow-sp-4);
+}
+
+.fr-budget > div {
+  display: grid;
+  gap: 2px;
+}
+
+.fr-budget .gl-num {
+  font-family: var(--glow-font-display);
+  font-size: 1.5rem;
+  color: var(--glow-text-strong);
+}
+
+.fr-meter {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+
+.fr-rot {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(258px, 1fr));
+  gap: var(--glow-sp-4);
+}
+
+.fr-decants {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 1px;
+  background: var(--glow-line);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-card);
+  overflow: hidden;
+}
+.fr-decants > * {
+  background: var(--glow-surface);
+  padding: var(--glow-sp-4);
+}
+
+.fr-rot__cell {
+  border: 1px solid var(--glow-line);
+  border-top: 2px solid var(--glow-metal);
+  border-radius: 0 0 var(--glow-r-card) var(--glow-r-card);
+  background: var(--glow-surface);
+  padding: var(--glow-sp-4);
+  display: grid;
+  gap: var(--glow-sp-3);
+  align-content: start;
+}
+
+.fr-rot__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--glow-sp-3);
+  color: var(--glow-text-strong);
+  border-bottom: 1px dashed var(--glow-line-strong);
+  padding-bottom: var(--glow-sp-2);
+}
+
+.fr-rot__row {
+  display: grid;
+  gap: 2px;
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: var(--glow-sp-2);
+}
+
+.fr-rot__row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.fr-limits {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(246px, 1fr));
+  gap: var(--glow-sp-3);
+  margin-bottom: var(--glow-sp-5);
+}
+
+.fr-photo {
+  display: grid;
+  gap: var(--glow-sp-3);
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-4);
+}
+
+@media (max-width: 720px) {
+  .fr-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .fr-form,
+  .fr-diary,
+  .fr-rot {
+    grid-template-columns: 1fr;
+  }
+}

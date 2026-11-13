@@ -1,0 +1,251 @@
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/cormorant-garamond/600-italic.css';
+@import '@fontsource-variable/manrope';
+@import '@fontsource/ibm-plex-mono/400.css';
+@import '@fontsource/ibm-plex-mono/500.css';
+@import './tokens.css';
+@import './components.css';
+@import './editorial.css';
+@import './shell.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--glow-canvas);
+  color: var(--glow-text);
+  font-family: var(--glow-font-ui);
+  font-size: var(--glow-text-body);
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overscroll-behavior-y: none;
+  transition: background var(--glow-dur-3) var(--glow-ease), color var(--glow-dur-3) var(--glow-ease);
+}
+
+/* Ambient light: one low warm wash, one cool — reads as studio lighting. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(1200px 700px at 88% -14%, color-mix(in srgb, var(--glow-accent) 26%, transparent), transparent 64%),
+    radial-gradient(900px 640px at 2% 108%, color-mix(in srgb, var(--glow-plum, #35182b) 22%, transparent), transparent 62%);
+  opacity: 0.55;
+}
+
+/* Film grain over everything, at the threshold of perception. */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9;
+  opacity: var(--glow-grain-opacity, 0.026);
+  background-image: var(--glow-grain);
+  mix-blend-mode: overlay;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: var(--glow-font-display);
+  font-weight: 500;
+  color: var(--glow-text-strong);
+  letter-spacing: var(--glow-tracking-display);
+  line-height: 1.06;
+  margin: 0 0 var(--glow-sp-3);
+  text-wrap: balance;
+}
+h1 {
+  font-size: var(--glow-text-display);
+}
+h2 {
+  font-size: var(--glow-text-title);
+}
+h3 {
+  font-size: 1.3rem;
+}
+h4 {
+  font-size: 1.06rem;
+  font-family: var(--glow-font-ui);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+p {
+  margin: 0 0 var(--glow-sp-3);
+  max-width: var(--glow-reading-max);
+}
+em {
+  font-style: italic;
+}
+a {
+  color: var(--glow-accent-soft);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+a:hover {
+  text-decoration: underline;
+}
+strong {
+  color: var(--glow-text-strong);
+  font-weight: 700;
+}
+hr {
+  border: 0;
+  height: 1px;
+  background: var(--glow-line);
+  margin: var(--glow-sp-5) 0;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--glow-accent-soft) 45%, transparent);
+  color: var(--glow-text-strong);
+}
+
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--glow-interactive-hover);
+  border-radius: 99px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--glow-metal-dim);
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--glow-focus);
+  outline-offset: 2px;
+}
+
+/* ------------------------------------------------------------------ type roles */
+.gl-display {
+  font-family: var(--glow-font-display);
+  font-size: var(--glow-text-hero);
+  font-weight: 500;
+  line-height: 0.94;
+  letter-spacing: var(--glow-tracking-display);
+  color: var(--glow-text-strong);
+}
+.gl-serif {
+  font-family: var(--glow-font-display);
+}
+.gl-italic {
+  font-family: var(--glow-font-display);
+  font-style: italic;
+}
+.gl-label {
+  font-family: var(--glow-font-ui);
+  font-size: var(--glow-text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--glow-tracking-label);
+  color: var(--glow-text-faint);
+  font-weight: 700;
+}
+.gl-eyebrow {
+  font-size: var(--glow-text-micro);
+  text-transform: uppercase;
+  letter-spacing: var(--glow-tracking-label);
+  color: var(--glow-metal);
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.gl-eyebrow::before {
+  content: '';
+  width: 18px;
+  height: 1px;
+  background: var(--glow-line-metal);
+}
+.gl-tech {
+  font-family: var(--glow-font-tech);
+  font-size: 0.78rem;
+  letter-spacing: var(--glow-tracking-tech);
+  font-variant-numeric: tabular-nums;
+  color: var(--glow-text-secondary);
+}
+.gl-stat {
+  font-family: var(--glow-font-display);
+  font-size: 2.05rem;
+  line-height: 1;
+  font-weight: 500;
+  color: var(--glow-text-strong);
+  font-variant-numeric: tabular-nums;
+}
+.gl-lead {
+  font-size: 1.05rem;
+  color: var(--glow-text-secondary);
+  max-width: 62ch;
+}
+.gl-small {
+  font-size: var(--glow-text-small);
+}
+.gl-muted {
+  color: var(--glow-text-muted);
+}
+.gl-faint {
+  color: var(--glow-text-faint);
+}
+.gl-strong {
+  color: var(--glow-text-strong);
+}
+.gl-drop::first-letter {
+  font-family: var(--glow-font-display);
+  font-size: 3.1rem;
+  line-height: 0.82;
+  float: left;
+  padding: 4px 8px 0 0;
+  color: var(--glow-accent-soft);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* The Settings switch has to collapse motion too, not only the OS preference. */
+:root[data-motion='reduced'] *,
+:root[data-motion='reduced'] *::before,
+:root[data-motion='reduced'] *::after {
+  animation-duration: 0.001ms !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}

@@ -1,0 +1,136 @@
+name: iOS unsigned build
+
+# What this produces, and what it deliberately does not.
+#
+#   produces   an unsigned .ipa artifact, compiled on Apple's macOS runner
+#   does not   sign it — never will, from here
+#
+# Signing an AltStore build means giving the machine that signs it your Apple ID
+# password. A shared runner is the wrong place for that, so this workflow stops
+# at the unsigned archive and AltStore does the signing on the phone, with your
+# own account, with your own consent, every 7 days. There are no secrets in this
+# file and none to add.
+#
+# Artifact route:  Actions tab -> this workflow -> Run workflow -> download
+#                  `GlowLab-unsigned-ipa`, unzip, take the .ipa out of it,
+#                  host it, put its URL in altstore/apps.json, run
+#                  `npm run ios:check`, then add the source to AltStore.
+#                  Full sequence with the limits in IOS_ALTSTORE.md.
+#
+# `npm run ios:check` is NOT run here on purpose: altstore/apps.json in the
+# repository is still the template, with placeholders and a zero size, so the
+# checker exits 1 by design until someone fills in their own hosting. Run it
+# locally before publishing.
+
+on:
+  workflow_dispatch:
+    inputs:
+      configuration:
+        description: Xcode configuration
+        type: choice
+        default: Release
+        options:
+          - Release
+          - Debug
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ipa:
+    name: Build unsigned .ipa
+    runs-on: macos-14
+    timeout-minutes: 30
+    env:
+      CONFIGURATION: ${{ github.event.inputs.configuration || 'Release' }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The wrapper bundles the built web app and serves it from the bundle, so
+      # the .ipa contains the whole program, not a loader. If this step is
+      # skipped or dist is stale, the installed app opens to a blank screen.
+      - name: Build the web app
+        run: |
+          npm run build
+
+      # Stages dist -> ios/AppBundle/www, rasterises the app icon, and fails if
+      # any file index.html references did not make it into the bundle.
+      - name: Stage the bundle
+        run: npm run ios:prepare
+
+      - name: Read the version
+        run: node -p "'VERSION=' + require('./package.json').version" | tee -a "$GITHUB_ENV"
+
+      - name: Generate the Xcode project
+        run: |
+          brew install xcodegen
+          cd ios
+          xcodegen generate
+
+      - name: Compile for a device without signing
+        working-directory: ios
+        run: |
+          xcodebuild \
+            -project GlowLab.xcodeproj \
+            -scheme GlowLab \
+            -configuration "$CONFIGURATION" \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -derivedDataPath build \
+            MARKETING_VERSION="$VERSION" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGN_IDENTITY= \
+            build
+
+      - name: Package the .ipa
+        run: |
+          set -euo pipefail
+          product="ios/build/Build/Products/${CONFIGURATION}-iphoneos"
+          app="$(find "$product" -maxdepth 1 -name '*.app' -print -quit)"
+          test -n "$app" || { echo "no .app under $product"; exit 1; }
+
+          # AltStore/side-loading tools read a zip whose single top-level folder
+          # is Payload, holding GlowLab.app. Anything else is refused later with
+          # a message that does not mention the archive layout at all.
+          rm -rf Payload "GlowLab-$VERSION-unsigned.ipa"
+          mkdir Payload
+          cp -R "$app" Payload/
+          test -s Payload/GlowLab.app/Info.plist || { echo "Info.plist missing from the archive"; exit 1; }
+          zip -qry "GlowLab-$VERSION-unsigned.ipa" Payload
+          ls -l "GlowLab-$VERSION-unsigned.ipa"
+          echo "IPA=GlowLab-$VERSION-unsigned.ipa" | tee -a "$GITHUB_ENV"
+
+      - name: Upload the artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: GlowLab-unsigned-ipa
+          path: ${{ env.IPA }}
+          if-no-files-found: error
+          retention-days: 30
+
+      - name: What to do with it
+        run: |
+          echo "Built $IPA ($(du -h "$IPA" | cut -f1)) — unsigned."
+          echo
+          echo "Download the artifact, unzip it, host the .ipa at a stable https"
+          echo "URL, put that URL and its exact byte size into altstore/apps.json,"
+          echo "run npm run ios:check, and add the source URL to AltStore."
+          echo "AltStore signs it on the phone with your Apple ID. Nothing in this"
+          echo "run had access to your account."

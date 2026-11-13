@@ -1,0 +1,112 @@
+/* DEPT 15 · PERSONAL COLOUR — study art direction: ruled columns, ink tests. */
+
+.co-page .gl-intro--study {
+  margin-bottom: var(--glow-sp-4);
+}
+
+.co-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 6fr) minmax(0, 6fr) minmax(0, 4fr);
+  gap: var(--glow-sp-5);
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .co-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.co-swatchbar {
+  display: flex;
+  height: 62px;
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-inset);
+  overflow: hidden;
+}
+
+.co-swatchbar > div {
+  flex: 1;
+  display: grid;
+  place-items: center;
+  font-family: var(--glow-font-tech);
+  font-size: 0.58rem;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+}
+
+.co-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-inset);
+  padding: 3px 7px 3px 3px;
+  background: var(--glow-surface-inset);
+}
+
+.co-chip i {
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  border: 1px solid var(--glow-line);
+  display: inline-block;
+}
+
+.co-picker {
+  display: flex;
+  align-items: center;
+  gap: var(--glow-sp-2);
+  flex-wrap: wrap;
+}
+
+.co-picker input[type='color'] {
+  width: 44px;
+  height: 34px;
+  padding: 2px;
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-surface-inset);
+  cursor: pointer;
+}
+
+.co-ink-test {
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  padding: var(--glow-sp-3);
+  text-align: center;
+}
+
+.co-qa {
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-3);
+  margin-top: var(--glow-sp-3);
+}
+
+.co-lean {
+  display: inline-grid;
+  grid-template-columns: auto 1fr;
+  gap: 2px 10px;
+  font-family: var(--glow-font-tech);
+  font-size: 0.72rem;
+}
+
+.co-tally {
+  font-variant-numeric: tabular-nums;
+  color: var(--glow-champagne);
+}
+
+.co-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 1px;
+  background: var(--glow-line);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  overflow: hidden;
+}
+
+.co-facts > div {
+  background: var(--glow-surface);
+  padding: var(--glow-sp-3);
+}

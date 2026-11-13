@@ -1,0 +1,171 @@
+/* DEPT 16 · BEAUTY MARKET — masthead art direction: ledger rules, worksheet plate. */
+
+.mk-page .gl-intro--masthead {
+  margin-bottom: var(--glow-sp-5);
+}
+
+.mk-plate {
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-card);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--glow-accent) 20%, var(--glow-surface)) 0%, var(--glow-surface) 55%);
+  padding: var(--glow-sp-5);
+}
+
+.mk-verdict {
+  border: 1px solid var(--glow-line-strong);
+  border-left: 3px solid var(--glow-metal);
+  border-radius: 0 var(--glow-r-card) var(--glow-r-card) 0;
+  padding: var(--glow-sp-4);
+  background: var(--glow-surface-inset);
+}
+
+.mk-verdict[data-verdict='buy'] {
+  border-left-color: var(--glow-ok);
+}
+
+.mk-verdict[data-verdict='wait'] {
+  border-left-color: var(--glow-warn);
+}
+
+.mk-verdict[data-verdict='skip'] {
+  border-left-color: var(--glow-bad);
+}
+
+.mk-word {
+  font-family: var(--glow-font-display);
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--glow-text-strong);
+}
+
+.mk-formula {
+  font-family: var(--glow-font-tech);
+  font-size: 0.72rem;
+  color: var(--glow-text-secondary);
+  background: var(--glow-surface-sunken);
+  border: 1px dashed var(--glow-line-strong);
+  border-radius: var(--glow-r-inset);
+  padding: var(--glow-sp-3);
+}
+
+.mk-rows {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px var(--glow-sp-4);
+  font-size: var(--glow-text-small);
+  font-variant-numeric: tabular-nums;
+}
+
+.mk-rows > span:nth-child(odd) {
+  color: var(--glow-text-muted);
+}
+
+.mk-rows > span:nth-child(even) {
+  color: var(--glow-text-strong);
+  text-align: right;
+}
+
+.mk-dupes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+}
+
+.mk-dupe {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--glow-sp-3);
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: 6px;
+}
+
+.mk-flag {
+  border-left: 2px solid var(--glow-warn);
+  padding-left: var(--glow-sp-3);
+}
+
+.mk-flag[data-state='past'] {
+  border-left-color: var(--glow-bad);
+}
+
+.mk-flag[data-state='fresh'] {
+  border-left-color: var(--glow-ok);
+}
+
+/* Already at home? — the wardrobe cross-read. Ledger column rules, no cards. */
+
+.mk-atm__stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-4);
+}
+
+.mk-atm {
+  border: 1px solid var(--glow-line);
+  border-left: 2px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+}
+
+.mk-atm__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--glow-sp-3);
+}
+
+.mk-atm__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+}
+
+.mk-atm__match {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--glow-sp-3);
+  align-items: start;
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-3);
+}
+
+.mk-atm__match .gl-tile {
+  width: 118px;
+}
+
+.mk-atm__match .gl-tile__img {
+  height: 88px;
+}
+
+.mk-atm__body {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.mk-atm__why {
+  margin: 0 0 0 18px;
+  padding: 0;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+
+@media (max-width: 640px) {
+  .mk-atm__match {
+    grid-template-columns: 1fr;
+  }
+
+  .mk-atm__match .gl-tile {
+    width: 100%;
+  }
+}

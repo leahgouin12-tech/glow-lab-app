@@ -1,0 +1,148 @@
+/* The visual acceptance sheet. Tokens only — every colour here resolves per theme. */
+
+.cs {
+  --cs-frame-h: clamp(420px, 68vh, 860px);
+}
+
+.cs-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-3);
+  margin-top: var(--glow-sp-4);
+}
+.cs-controls > * {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+
+.cs-themebar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-4);
+  margin-top: var(--glow-sp-3);
+}
+.cs-themestat {
+  display: flex;
+  align-items: baseline;
+  gap: var(--glow-sp-2);
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+.cs-themestat b {
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-body);
+  color: var(--glow-text);
+}
+
+/* Three real viewports side by side; the row scrolls rather than shrinking them. */
+.cs-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--glow-sp-4);
+  overflow-x: auto;
+  padding-bottom: var(--glow-sp-3);
+  scroll-snap-type: x proximity;
+}
+.cs-pane {
+  flex: 0 0 var(--cs-w, 390px);
+  width: var(--cs-w, 390px);
+  scroll-snap-align: start;
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-card);
+  padding: var(--glow-sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+}
+.cs-pane[data-on] {
+  border-color: var(--glow-ok);
+}
+.cs-panehead {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--glow-sp-3);
+}
+.cs-panetitle {
+  margin: 2px 0 0;
+  font-family: var(--glow-font-display);
+  font-size: var(--glow-text-title);
+  line-height: 1.15;
+  color: var(--glow-text);
+}
+.cs-frame {
+  width: 100%;
+  height: var(--cs-frame-h);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-canvas);
+}
+
+/* The grid: 29 rows × 3 cells, tickable without loading three panes. */
+.cs-grid {
+  display: flex;
+  flex-direction: column;
+}
+.cs-gridrow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--glow-sp-3);
+  padding: 7px 0;
+  border-bottom: 1px solid var(--glow-line);
+}
+.cs-gridrow:last-child {
+  border-bottom: none;
+}
+.cs-gridname {
+  appearance: none;
+  background: none;
+  border: 0;
+  padding: 0;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+  color: var(--glow-text);
+  font: inherit;
+  cursor: pointer;
+}
+.cs-gridname:hover {
+  color: var(--glow-accent);
+}
+.cs-cells {
+  display: flex;
+  gap: var(--glow-sp-2);
+  flex: none;
+}
+.cs-cell {
+  width: 26px;
+  height: 26px;
+  border-radius: var(--glow-r-control);
+  border: 1px solid var(--glow-line-strong);
+  background: var(--glow-surface-sunken);
+  cursor: pointer;
+  padding: 0;
+}
+.cs-cell[data-on] {
+  background: var(--glow-ok);
+  border-color: var(--glow-ok);
+}
+
+@media (max-width: 640px) {
+  .cs {
+    --cs-frame-h: 62vh;
+  }
+  .cs-row {
+    gap: var(--glow-sp-3);
+  }
+  .cs-gridrow {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .cs-cell {
+    width: 30px;
+    height: 30px;
+  }
+}

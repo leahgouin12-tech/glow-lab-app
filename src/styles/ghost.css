@@ -1,0 +1,527 @@
+/* =====================================================================
+   GHOST GUIDE — src/ui/GhostGuide.tsx
+   A contact sheet, not a magic viewfinder. Reference photograph, fixed
+   geometry drawn in the DOM, and the capture fields you recorded.
+   Nothing here detects anything or reads a pixel of anything.
+   Tokens only — no new colours, no literal hex.
+   ===================================================================== */
+
+.gg {
+  display: grid;
+  gap: var(--glow-sp-3);
+  min-width: 0;
+}
+
+.gg__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2) var(--glow-sp-4);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--glow-sp-2);
+  border-bottom: 1px solid var(--glow-line);
+}
+
+.gg__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+}
+
+.gg__body {
+  display: grid;
+  gap: var(--glow-sp-4);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  min-width: 0;
+}
+@media (min-width: 860px) {
+  .gg__body {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  }
+}
+
+.gg__side {
+  display: grid;
+  gap: var(--glow-sp-3);
+  align-content: start;
+  min-width: 0;
+}
+
+/* the stage -------------------------------------------------------------- */
+
+.gg__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  max-height: 62vh;
+  min-height: 210px;
+  overflow: hidden;
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-card);
+}
+.gg--reconcile .gg__stage {
+  aspect-ratio: 1 / 1;
+}
+@media (min-width: 860px) {
+  .gg__stage {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.gg__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+/* the mirrored preview is a framing aid only — the stored file is not mirrored */
+.gg__media--video {
+  transform: scaleX(-1);
+}
+.gg__media--ghost {
+  pointer-events: none;
+}
+
+.gg__lines {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.gg__lines i {
+  position: absolute;
+  display: block;
+  background: color-mix(in srgb, var(--glow-accent-soft) 58%, transparent);
+}
+.gg__lines i.v {
+  top: 0;
+  bottom: 0;
+  width: 1px;
+}
+.gg__lines i.h {
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+.gg__lines i.axis {
+  background: color-mix(in srgb, var(--glow-accent-ink) 74%, transparent);
+}
+.gg__lines i.axis.v {
+  width: 1px;
+  left: 50%;
+}
+.gg__lines i.axis.h {
+  height: 1px;
+  top: 50%;
+}
+.gg__lines span {
+  position: absolute;
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-secondary);
+  background: color-mix(in srgb, var(--glow-surface) 78%, transparent);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+  padding: 1px 5px;
+}
+
+.gg__badge {
+  position: absolute;
+  top: var(--glow-sp-2);
+  left: var(--glow-sp-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-secondary);
+  background: color-mix(in srgb, var(--glow-surface) 82%, transparent);
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-pill);
+  padding: 2px 8px;
+}
+.gg__badge i {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--glow-r-pill);
+  background: var(--glow-ok);
+  animation: gg-blink 1.9s steps(1, end) infinite;
+}
+@keyframes gg-blink {
+  0%,
+  55% {
+    opacity: 1;
+  }
+  56%,
+  100% {
+    opacity: 0.25;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .gg__badge i {
+    animation: none;
+  }
+}
+
+.gg__none {
+  position: relative;
+  display: grid;
+  place-items: center;
+  gap: var(--glow-sp-2);
+  padding: var(--glow-sp-5);
+  text-align: center;
+  color: var(--glow-text-muted);
+  font-size: var(--glow-text-small);
+  max-width: 46ch;
+}
+
+.gg__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+  align-items: center;
+}
+
+/* reference thumbnail + checklist ---------------------------------------- */
+
+.gg__thumb {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+.gg__thumb img {
+  width: 100%;
+  max-height: 190px;
+  object-fit: contain;
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+}
+
+.gg__check {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+.gg__check li {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr);
+  gap: var(--glow-sp-2);
+  align-items: start;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+  padding-bottom: var(--glow-sp-2);
+  border-bottom: 1px dashed var(--glow-line);
+}
+.gg__check li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.gg__check svg {
+  color: var(--glow-ok);
+  margin-top: 2px;
+}
+.gg__check b {
+  color: var(--glow-text);
+  font-weight: 600;
+}
+
+/* read-out ---------------------------------------------------------------- */
+
+.gg__readout {
+  display: grid;
+  gap: var(--glow-sp-2);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+  background: var(--glow-surface);
+  padding: var(--glow-sp-3);
+}
+.gg__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--glow-sp-3);
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--glow-sp-2);
+  border-bottom: 1px solid var(--glow-line);
+}
+.gg__row:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.gg__row-k {
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+  min-width: 9ch;
+}
+.gg__row-v {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+  align-items: center;
+  min-width: 0;
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-small);
+  color: var(--glow-text);
+  overflow-wrap: anywhere;
+}
+.gg__row-v em {
+  font-style: normal;
+  color: var(--glow-text-faint);
+}
+.gg__row-off {
+  color: var(--glow-text-muted);
+}
+
+.gg__note {
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-muted);
+  border-left: 2px solid var(--glow-line-strong);
+  padding-left: var(--glow-sp-3);
+  max-width: var(--glow-reading-max);
+}
+.gg__note strong {
+  color: var(--glow-text-secondary);
+  font-weight: 600;
+}
+
+.gg__fallback {
+  display: grid;
+  gap: var(--glow-sp-2);
+  padding: var(--glow-sp-3);
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+
+.gg__split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--glow-sp-3);
+}
+.gg__split figure {
+  margin: 0;
+  display: grid;
+  gap: var(--glow-sp-2);
+  min-width: 0;
+}
+.gg__split img {
+  width: 100%;
+  max-height: 46vh;
+  object-fit: contain;
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+}
+.gg__split figcaption {
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-faint);
+}
+
+/* =====================================================================
+   SHOT GRID — src/ui/media.tsx `ShotGridPicker`
+   One framing set-up, then N slots shot against the first frame.
+   A contact sheet of empty frames, not a camera.
+   Tokens only — no new colours, no literal hex.
+   ===================================================================== */
+
+.sg {
+  display: grid;
+  gap: var(--glow-sp-4);
+  min-width: 0;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface);
+  padding: var(--glow-sp-4);
+}
+
+.sg__head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2) var(--glow-sp-4);
+  align-items: baseline;
+  justify-content: space-between;
+  padding-bottom: var(--glow-sp-3);
+  border-bottom: 1px solid var(--glow-line);
+}
+.sg__headings {
+  display: grid;
+  gap: var(--glow-sp-2);
+  min-width: 0;
+  max-width: var(--glow-reading-max);
+}
+
+.sg__refused {
+  display: grid;
+  gap: var(--glow-sp-2);
+  justify-items: start;
+}
+
+.sg__target {
+  max-width: 42ch;
+}
+
+/* the slot rail ---------------------------------------------------------- */
+
+.sg__slots {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--glow-sp-3);
+}
+
+.sg__slot {
+  display: grid;
+  gap: var(--glow-sp-2);
+  align-content: start;
+  min-width: 0;
+  padding: var(--glow-sp-3);
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+}
+.sg__slot[data-active='true'] {
+  border-color: var(--glow-line-strong);
+  box-shadow: inset 2px 0 0 var(--glow-accent-soft);
+}
+.sg__slot[data-filled='true'] {
+  background: var(--glow-surface);
+}
+
+.sg__slot-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+  align-items: center;
+}
+
+.sg__frame {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 5;
+  min-height: 96px;
+  overflow: hidden;
+  background: var(--glow-surface-sunken);
+  border: 1px dashed var(--glow-line-strong);
+  border-radius: var(--glow-r-inset);
+}
+.sg__slot[data-filled='true'] .sg__frame {
+  border-style: solid;
+}
+.sg__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.sg__slot-label {
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.sg__slot-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+  align-items: center;
+}
+
+/* the working panel ------------------------------------------------------ */
+
+.sg__panel {
+  display: grid;
+  gap: var(--glow-sp-3);
+  min-width: 0;
+  padding: var(--glow-sp-4);
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-sm);
+}
+.sg__panel-head {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2) var(--glow-sp-4);
+  align-items: baseline;
+  justify-content: space-between;
+}
+.sg__recorded {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+.sg__panel-acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-3);
+  align-items: center;
+}
+.sg__lineup {
+  min-width: 0;
+  padding-top: var(--glow-sp-3);
+  border-top: 1px dashed var(--glow-line);
+}
+
+/* the set's own read-out -------------------------------------------------- */
+
+.sg__summary {
+  display: grid;
+  gap: var(--glow-sp-2);
+  min-width: 0;
+}
+.sg__summary-head {
+  color: var(--glow-text);
+}
+.sg__summary-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+.sg__summary-list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2) var(--glow-sp-3);
+  align-items: center;
+  padding-bottom: var(--glow-sp-2);
+  border-bottom: 1px dashed var(--glow-line);
+}
+.sg__summary-list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sg__foot {
+  display: grid;
+  gap: var(--glow-sp-3);
+  padding-top: var(--glow-sp-3);
+  border-top: 1px solid var(--glow-line);
+}
+.sg__confirm {
+  display: grid;
+  gap: var(--glow-sp-3);
+  justify-items: start;
+  max-width: var(--glow-reading-max);
+  padding: var(--glow-sp-3);
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-sm);
+}

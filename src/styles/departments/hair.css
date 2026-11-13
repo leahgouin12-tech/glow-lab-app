@@ -1,0 +1,389 @@
+/* =====================================================================
+   HAIR STUDIO — luxury editorial spread + physical archive.
+   Art direction: champagne hairlines, oversized serif numerals, monospace
+   ledger labels, plates that read like archive folders. All colour comes
+   from --glow-* tokens so obsidian / oxblood / editorial each shift it.
+   Scoped under .hs-hair so nothing leaks into other departments.
+   ===================================================================== */
+
+.hs-hair {
+  --hs-rule: color-mix(in srgb, var(--glow-champagne) 34%, transparent);
+  --hs-rule-soft: color-mix(in srgb, var(--glow-champagne) 16%, transparent);
+  --hs-ink: color-mix(in srgb, var(--glow-champagne) 78%, var(--glow-text-strong));
+  --hs-plate: color-mix(in srgb, var(--glow-canvas) 55%, var(--glow-surface));
+  --hs-scrim: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--glow-canvas) 92%, transparent) 4%,
+    color-mix(in srgb, var(--glow-canvas) 34%, transparent) 48%,
+    transparent 88%
+  );
+  position: relative;
+}
+
+/* the studio signature: a champagne rule that opens every section */
+.hs-hair .gl-section__title {
+  border-bottom: 0;
+}
+.hs-hair > .gl-intro {
+  border-bottom: 1px solid var(--hs-rule-soft);
+}
+
+/* ------------------------------------------------------------ intro + strip */
+.hs-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--hs-rule-soft);
+  border-color: var(--hs-rule-soft);
+  margin: 0 0 var(--glow-sp-5);
+}
+.hs-strip__cell {
+  position: relative;
+  display: block;
+  padding: 0 !important;
+  background: var(--hs-plate);
+  min-height: 148px;
+  overflow: hidden;
+}
+.hs-strip__cell img,
+.hs-strip__cell .gl-missing-img {
+  display: block;
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+}
+.hs-strip__cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: var(--glow-sp-3) var(--glow-sp-3) var(--glow-sp-2);
+  background: var(--hs-scrim);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.hs-strip__cap .gl-serif {
+  font-size: 1.02rem;
+  line-height: 1.2;
+  color: var(--glow-text-strong);
+}
+.hs-strip__cap .gl-tech {
+  color: var(--hs-ink);
+  font-size: var(--glow-text-micro);
+}
+.hs-strip__cell--empty {
+  display: grid;
+  place-items: center;
+  grid-column: 1 / -1;
+  min-height: 96px;
+  padding: var(--glow-sp-4) !important;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--glow-surface-sunken),
+    var(--glow-surface-sunken) 9px,
+    var(--glow-surface-inset) 9px,
+    var(--glow-surface-inset) 18px
+  );
+  text-align: center;
+  color: var(--glow-text-faint);
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- section nav */
+.hs-nav {
+  position: sticky;
+  top: 0;
+  z-index: 4;
+  gap: var(--glow-sp-2);
+  padding: var(--glow-sp-3) 0 var(--glow-sp-2);
+  margin-bottom: var(--glow-sp-5);
+  background: color-mix(in srgb, var(--glow-canvas) 88%, transparent);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--hs-rule-soft);
+}
+.hs-nav .gl-chip {
+  font-family: var(--glow-font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
+  padding: 0 14px;
+  min-height: 44px;
+  border-radius: var(--glow-r-control);
+}
+.hs-nav .gl-chip--on {
+  background: color-mix(in srgb, var(--glow-champagne) 18%, var(--glow-interactive));
+  border-color: var(--hs-rule);
+  color: var(--glow-text-strong);
+}
+
+/* --------------------------------------------------------------- archive cards */
+.hs-rec {
+  position: relative;
+  border: 1px solid var(--glow-line);
+  border-left: 2px solid var(--hs-rule);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface);
+  padding: var(--glow-sp-4) var(--glow-sp-5);
+  transition: border-color var(--glow-dur-2) var(--glow-ease),
+    background var(--glow-dur-2) var(--glow-ease);
+}
+.hs-rec:hover {
+  border-left-color: var(--glow-champagne);
+  background: var(--glow-surface-raised);
+}
+.hs-rec__thumbs {
+  display: flex;
+  gap: var(--glow-sp-2);
+  overflow-x: auto;
+  margin-top: var(--glow-sp-3);
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+}
+.hs-thumb-btn {
+  flex: none;
+  width: 92px;
+  height: 92px;
+  padding: 0;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-tile);
+  background: var(--glow-surface-sunken);
+  overflow: hidden;
+  cursor: zoom-in;
+  transition: border-color var(--glow-dur-1) var(--glow-ease),
+    transform var(--glow-dur-1) var(--glow-ease);
+}
+.hs-thumb-btn img,
+.hs-thumb-btn .gl-missing-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.hs-thumb-btn:hover {
+  border-color: var(--glow-champagne);
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------ style plates */
+.hs-style-card {
+  width: 220px;
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  padding: var(--glow-sp-4);
+  border: 1px solid var(--hs-rule-soft);
+  border-radius: var(--glow-r-tile);
+  background: var(--hs-plate);
+}
+.hs-style-card .gl-tech {
+  color: var(--glow-text-muted);
+}
+.hs-style {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  border-radius: var(--glow-r-card);
+}
+.hs-style .gl-kv {
+  margin-top: 2px;
+}
+.hs-prod {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  min-height: 210px;
+  border-radius: var(--glow-r-card);
+  border-color: var(--glow-line);
+}
+.hs-prod .gl-tech {
+  color: var(--glow-text-faint);
+  letter-spacing: var(--glow-tracking-tech);
+}
+.hs-ev {
+  border-radius: var(--glow-r-inset);
+  border-left: 2px solid var(--glow-line-metal);
+  padding: var(--glow-sp-4);
+  background: var(--glow-surface-inset);
+}
+
+/* ------------------------------------------------------------- routines + logs */
+.hs-sched {
+  display: grid;
+  gap: var(--glow-sp-3);
+  grid-template-columns: minmax(0, 1fr);
+  padding: var(--glow-sp-4);
+  border: 1px dashed var(--hs-rule-soft);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-surface-sunken);
+}
+.hs-step {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  border-left: 2px solid var(--glow-line-metal);
+  border-radius: var(--glow-r-inset);
+}
+.hs-obs {
+  border-left: 2px solid var(--glow-line);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+/* --------------------------------------------------------------- photo timeline */
+.hs-timeline {
+  padding: var(--glow-sp-2) 0 var(--glow-sp-4);
+}
+.hs-timeline__item {
+  width: 220px;
+  display: flex;
+}
+.hs-timeline__item .gl-pin {
+  width: 100%;
+}
+
+/* =====================================================================
+   Shared-primitive gaps (undefined in shared CSS) — scoped fallbacks so
+   the studio never shows an unstyled control. See report.
+   ===================================================================== */
+.hs-hair .gl-num {
+  font-family: var(--glow-font-tech);
+  font-variant-numeric: tabular-nums;
+}
+.hs-hair .gl-page__sub {
+  color: var(--glow-text-muted);
+  font-size: var(--glow-text-small);
+  max-width: var(--glow-reading-max);
+  line-height: 1.55;
+}
+.hs-hair .gl-meter {
+  height: 8px;
+  border-radius: var(--glow-r-pill);
+  background: var(--glow-surface-sunken);
+  border: 1px solid var(--glow-line);
+  overflow: hidden;
+}
+.hs-hair .gl-meter__fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--glow-champagne) 70%, var(--glow-accent)),
+    var(--glow-champagne)
+  );
+  transition: width var(--glow-dur-3) var(--glow-ease);
+}
+.hs-hair .gl-btn--gold {
+  background: color-mix(in srgb, var(--glow-champagne) 22%, var(--glow-interactive));
+  border-color: var(--hs-rule);
+  color: var(--glow-text-strong);
+}
+.hs-hair .gl-btn--gold:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--glow-champagne) 34%, var(--glow-interactive));
+  border-color: var(--glow-champagne);
+}
+.hs-hair .gl-chip--gold {
+  border-color: var(--hs-rule);
+  background: color-mix(in srgb, var(--glow-champagne) 14%, transparent);
+  color: var(--hs-ink);
+}
+
+/* -------------------------------------------------------------- focus + targets */
+.hs-hair button,
+.hs-hair [role='button'],
+.hs-hair a.gl-btn {
+  min-height: 36px;
+}
+.hs-hair .gl-chipbar .gl-chip,
+.hs-hair .hs-nav .gl-chip {
+  min-height: 44px;
+}
+.hs-hair *:focus-visible {
+  outline: 2px solid var(--glow-focus);
+  outline-offset: 2px;
+  border-radius: var(--glow-r-control);
+}
+
+/* ------------------------------------------------------------------ 768 and up */
+@media (min-width: 768px) {
+  .hs-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .hs-strip__cell,
+  .hs-strip__cell img,
+  .hs-strip__cell .gl-missing-img {
+    min-height: 186px;
+    height: 186px;
+  }
+  .hs-sched {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hs-rec {
+    padding: var(--glow-sp-5) var(--glow-sp-6);
+  }
+}
+
+/* ----------------------------------------------------------------- 1440 and up */
+@media (min-width: 1440px) {
+  .hs-strip__cell,
+  .hs-strip__cell img,
+  .hs-strip__cell .gl-missing-img {
+    height: 224px;
+    min-height: 224px;
+  }
+  .hs-sched {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+  .hs-hair .gl-card__head h3 {
+    letter-spacing: var(--glow-tracking-display);
+  }
+}
+
+/* ---------------------------------------------------------------------- 380 */
+@media (max-width: 480px) {
+  .hs-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hs-strip__cell img,
+  .hs-strip__cell .gl-missing-img {
+    height: 168px;
+  }
+  .hs-nav .gl-chip {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+  .hs-rec__thumbs {
+    gap: 6px;
+  }
+  .hs-thumb-btn {
+    width: 76px;
+    height: 76px;
+  }
+}
+
+/* ------------------------------------------------------- reduced motion + print */
+@media (prefers-reduced-motion: reduce) {
+  .hs-hair *,
+  .hs-hair *::before,
+  .hs-hair *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+  }
+}
+
+@media print {
+  .hs-nav,
+  .hs-hair .gl-chipbar,
+  .hs-hair .gl-overlay,
+  .hs-thumb-btn {
+    display: none !important;
+  }
+  .hs-hair {
+    background: var(--glow-canvas);
+  }
+  .hs-rec,
+  .hs-style-card,
+  .hs-prod,
+  .hs-ev {
+    break-inside: avoid;
+  }
+}

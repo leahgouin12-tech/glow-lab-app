@@ -1,0 +1,158 @@
+/* Experimentation Lab — art direction: a bench, not a dashboard.
+   Graph-paper undertone, monospace annotations, a wide protocol column. */
+
+.exp-work {
+  display: grid;
+  grid-template-columns: minmax(0, 4fr) minmax(0, 9fr);
+  gap: var(--glow-sp-5);
+  align-items: start;
+}
+@media (max-width: 1120px) {
+  .exp-work {
+    grid-template-columns: 1fr;
+  }
+  .exp-pane {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--glow-line);
+    padding-top: var(--glow-sp-5);
+  }
+}
+.exp-rail {
+  min-width: 0;
+}
+.exp-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-faint);
+  text-transform: uppercase;
+}
+.exp-verdict {
+  color: var(--glow-metal);
+}
+
+/* templates -------------------------------------------------------------- */
+.exp-templates {
+  align-items: stretch;
+}
+.exp-template {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  align-items: flex-start;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 21px,
+    color-mix(in srgb, var(--glow-line) 45%, transparent) 21px,
+    color-mix(in srgb, var(--glow-line) 45%, transparent) 22px
+  );
+}
+.exp-template__h {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: var(--glow-text-strong);
+}
+.exp-template .gl-small {
+  flex: 1;
+}
+
+/* run sheet -------------------------------------------------------------- */
+.exp-run {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-4);
+  min-width: 0;
+}
+.exp-run__top {
+  align-items: flex-start;
+  gap: var(--glow-sp-3);
+  border-bottom: 2px solid var(--glow-line-metal);
+  padding-bottom: var(--glow-sp-3);
+}
+.exp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+  gap: var(--glow-sp-3);
+}
+.exp-two {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  gap: var(--glow-sp-4);
+}
+
+.exp-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: var(--glow-sp-4);
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-4);
+}
+.exp-link {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.exp-link__inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* metrics ---------------------------------------------------------------- */
+.exp-metrics {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: var(--glow-sp-4);
+}
+@media (max-width: 860px) {
+  .exp-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+.exp-metrics > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+}
+
+/* check-ins -------------------------------------------------------------- */
+.exp-checkin {
+  margin-bottom: var(--glow-sp-4);
+}
+.exp-checkin__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: var(--glow-sp-3);
+  align-items: end;
+  margin-bottom: var(--glow-sp-3);
+}
+.exp-checkin__media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(108px, 1fr));
+  gap: var(--glow-sp-2);
+  margin-top: 6px;
+}
+.exp-checkin__media .gl-tile {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.exp-checkin__media .gl-tile__img {
+  height: 108px;
+}
+
+.exp-ul {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}

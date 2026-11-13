@@ -1,0 +1,279 @@
+.gl-widget__title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-family: var(--glow-font-display);
+  font-size: 1.06rem;
+  letter-spacing: 0.01em;
+  color: var(--glow-text-strong);
+}
+.gl-widget__title svg {
+  color: var(--glow-accent-soft);
+}
+.gl-home__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-4);
+}
+.gl-home__list > li {
+  padding-bottom: var(--glow-sp-3);
+  border-bottom: 1px solid var(--glow-line);
+}
+.gl-home__list > li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+.gl-home__checks {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.gl-home__checks .gl-check {
+  padding: 9px 0;
+  border-bottom: 1px dashed var(--glow-line);
+}
+.gl-home__checks .gl-check:last-child {
+  border-bottom: 0;
+}
+.gl-home__pins {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 132px), 1fr));
+  gap: var(--glow-sp-3);
+}
+.gl-home__group {
+  margin-bottom: var(--glow-sp-5);
+}
+.gl-home__edit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+  margin-bottom: var(--glow-sp-5);
+}
+.gl-home__spend {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ------------------------------------------------- weekly adherence card */
+.gl-cons {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-4);
+  min-width: 0;
+}
+.gl-cons__window {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--glow-sp-3);
+  flex-wrap: wrap;
+}
+.gl-cons__window > div {
+  min-width: 0;
+}
+.gl-cons__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 4px;
+}
+.gl-cons__day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  min-width: 0;
+  padding: 6px 2px 5px;
+  text-align: center;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-tile);
+  background: var(--glow-surface-inset);
+}
+.gl-cons__day[data-today='true'] {
+  border-color: var(--glow-line-strong);
+  box-shadow: inset 0 0 0 1px var(--glow-line-metal);
+}
+.gl-cons__dow {
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-faint);
+  text-transform: uppercase;
+}
+.gl-cons__num {
+  font-family: var(--glow-font-display);
+  font-size: 1.02rem;
+  line-height: 1.1;
+  color: var(--glow-text-strong);
+}
+.gl-cons__mark {
+  display: block;
+  width: 100%;
+  height: 9px;
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-plate);
+  background: transparent;
+}
+.gl-cons__day[data-state='done'] .gl-cons__mark {
+  border-color: transparent;
+  background: var(--glow-ok);
+}
+.gl-cons__day[data-state='partial'] .gl-cons__mark {
+  border-color: var(--glow-line-metal);
+  background: linear-gradient(90deg, var(--glow-warn) 0 50%, var(--glow-surface-sunken) 50% 100%);
+}
+.gl-cons__day[data-state='nothing'] .gl-cons__mark {
+  border-style: dashed;
+  background: var(--glow-surface-sunken);
+}
+.gl-cons__day[data-state='unscheduled'] .gl-cons__mark {
+  border-color: var(--glow-line);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 2px,
+    var(--glow-line) 2px,
+    var(--glow-line) 3px
+  );
+}
+.gl-cons__count {
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-muted);
+}
+.gl-cons__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px var(--glow-sp-3);
+  font-size: var(--glow-text-micro);
+  color: var(--glow-text-faint);
+}
+.gl-cons__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.gl-cons__legend span::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-plate);
+  flex: none;
+}
+.gl-cons__legend span[data-state='done']::before {
+  border-color: transparent;
+  background: var(--glow-ok);
+}
+.gl-cons__legend span[data-state='partial']::before {
+  background: linear-gradient(90deg, var(--glow-warn) 0 50%, transparent 50% 100%);
+}
+.gl-cons__legend span[data-state='nothing']::before {
+  border-style: dashed;
+  background: var(--glow-surface-sunken);
+}
+.gl-cons__legend span[data-state='unscheduled']::before {
+  border-color: var(--glow-line);
+  background: repeating-linear-gradient(
+    135deg,
+    transparent,
+    transparent 2px,
+    var(--glow-line) 2px,
+    var(--glow-line) 3px
+  );
+}
+.gl-cons__slip {
+  margin: 0;
+  font-size: var(--glow-text-body);
+  color: var(--glow-text-secondary);
+  border-left: 2px solid var(--glow-line-metal);
+  padding-left: var(--glow-sp-3);
+}
+.gl-cons__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+  gap: var(--glow-sp-3);
+}
+.gl-cons__block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  min-width: 0;
+}
+.gl-cons__meters {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+}
+.gl-cons__meter {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.gl-cons__meter > .gl-row > .gl-strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.gl-cons__gaps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.gl-cons__gaps li {
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+  border-left: 2px solid var(--glow-line-strong);
+  padding-left: var(--glow-sp-2);
+}
+/* the Meter primitive ships no base geometry outside department stylesheets */
+.gl-cons .gl-meter {
+  height: 7px;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-plate);
+  background: var(--glow-surface-sunken);
+  overflow: hidden;
+}
+.gl-cons .gl-meter__fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--glow-metal) 55%, var(--glow-accent)),
+    var(--glow-metal)
+  );
+  transition: width var(--glow-dur-3) var(--glow-ease);
+}
+.gl-cons .gl-table {
+  font-size: var(--glow-text-small);
+}
+@media (max-width: 430px) {
+  .gl-cons__days {
+    gap: 3px;
+  }
+  .gl-cons__day {
+    padding: 5px 1px 4px;
+  }
+  .gl-cons__dow {
+    font-size: 0.55rem;
+  }
+  .gl-cons__num {
+    font-size: 0.88rem;
+  }
+  .gl-cons__mark {
+    height: 7px;
+  }
+}

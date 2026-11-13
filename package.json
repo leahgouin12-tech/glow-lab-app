@@ -1,0 +1,47 @@
+{
+  "name": "the-glow-lab",
+  "private": true,
+  "version": "0.7.0",
+  "description": "THE GLOW LAB — personal appearance intelligence platform. Local-first, offline-capable PWA.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "ios:assets": "node scripts/make-ios-assets.mjs",
+    "ios:prepare": "node scripts/make-ios-assets.mjs && node scripts/ios-prepare.mjs",
+    "ios:check": "node scripts/altstore-check.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/manrope": "^5.1.0",
+    "@fontsource/cormorant-garamond": "^5.3.0",
+    "@fontsource/ibm-plex-mono": "^5.3.0",
+    "chart.js": "^4.4.7",
+    "dexie": "^4.0.10",
+    "dexie-react-hooks": "^1.1.3",
+    "idb-keyval": "^6.2.1",
+    "jszip": "^3.10.1",
+    "lucide-react": "^0.469.0",
+    "react": "^18.3.1",
+    "react-chartjs-2": "^5.3.0",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@testing-library/dom": "^10.4.0",
+    "@testing-library/react": "^16.1.0",
+    "@types/react": "^18.3.17",
+    "@types/react-dom": "^18.3.5",
+    "@vitejs/plugin-react": "^4.3.4",
+    "fake-indexeddb": "^6.0.0",
+    "jsdom": "^25.0.1",
+    "sharp": "^0.35.5",
+    "typescript": "^5.7.2",
+    "vite": "^6.0.3",
+    "vite-plugin-pwa": "^0.21.1",
+    "vitest": "^2.1.8"
+  }
+}

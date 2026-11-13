@@ -1,0 +1,213 @@
+/* Glow Academy — art direction: a magazine masthead that opens into a
+   two-column instructional spread. Type-forward, rule-led, no card soup. */
+
+.acad-filter {
+  align-items: flex-start;
+  margin-bottom: var(--glow-sp-4);
+}
+
+.acad-sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-tech);
+  color: var(--glow-text-faint);
+  text-transform: uppercase;
+}
+.acad-dot {
+  color: var(--glow-line-strong);
+}
+
+/* index + rail ---------------------------------------------------------- */
+.acad-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: var(--glow-sp-5);
+  align-items: start;
+}
+@media (max-width: 1000px) {
+  .acad-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* reader spread --------------------------------------------------------- */
+.acad-back {
+  margin-bottom: var(--glow-sp-4);
+}
+.acad-spread {
+  border-top: 2px solid var(--glow-line-metal);
+  padding-top: var(--glow-sp-5);
+}
+.acad-spread__head {
+  max-width: 74ch;
+  margin-bottom: var(--glow-sp-5);
+}
+.acad-hed {
+  font-size: var(--glow-text-title);
+  line-height: 1.08;
+  margin: var(--glow-sp-2) 0;
+}
+.acad-spread__body {
+  display: grid;
+  grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  gap: var(--glow-sp-6);
+  align-items: start;
+}
+@media (max-width: 1000px) {
+  .acad-spread__body {
+    grid-template-columns: 1fr;
+  }
+  .acad-side {
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--glow-line);
+    padding-top: var(--glow-sp-4);
+  }
+}
+.acad-actions {
+  margin-bottom: var(--glow-sp-4);
+  padding-bottom: var(--glow-sp-4);
+  border-bottom: 1px dashed var(--glow-line);
+}
+
+.acad-steps {
+  list-style: none;
+  margin: 0 0 var(--glow-sp-5);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.acad-step {
+  border-bottom: 1px solid var(--glow-line);
+  padding: var(--glow-sp-4) 0;
+}
+.acad-step--done .acad-step__label {
+  color: var(--glow-text-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--glow-line-strong);
+}
+.acad-step__no {
+  display: inline-block;
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-label);
+  color: var(--glow-metal);
+  margin-right: 10px;
+  vertical-align: 3px;
+}
+.acad-step__label {
+  display: block;
+  font-family: var(--glow-font-display);
+  font-size: 1.2rem;
+  line-height: 1.25;
+  color: var(--glow-text-strong);
+}
+.acad-step__detail {
+  display: block;
+  margin-top: 6px;
+  max-width: var(--glow-reading-max);
+  font-size: var(--glow-text-body);
+  color: var(--glow-text-secondary);
+}
+.acad-step__caution {
+  display: block;
+  margin-top: 8px;
+  padding-left: 10px;
+  border-left: 2px solid var(--glow-warn);
+  font-size: var(--glow-text-small);
+  color: var(--glow-warn);
+}
+
+.acad-side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+}
+.acad-side__h {
+  margin: var(--glow-sp-4) 0 0;
+  font-size: 1.15rem;
+  color: var(--glow-text-strong);
+}
+.acad-materials {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+}
+.acad-materials li {
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: var(--glow-sp-3);
+}
+.acad-pitfalls {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+.acad-pitfalls li::marker {
+  color: var(--glow-accent-soft);
+}
+
+/* paths ----------------------------------------------------------------- */
+.acad-paths {
+  gap: var(--glow-sp-3);
+}
+.acad-path {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+}
+.acad-path__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.acad-path__list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--glow-sp-2);
+  border-bottom: 1px solid var(--glow-line);
+  padding: 6px 0;
+}
+.acad-path__tools {
+  display: flex;
+  gap: 2px;
+  flex: none;
+}
+
+/* forms ----------------------------------------------------------------- */
+.acad-form__row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 200px);
+  gap: var(--glow-sp-4);
+  align-items: end;
+  margin-bottom: var(--glow-sp-4);
+}
+@media (max-width: 680px) {
+  .acad-form__row {
+    grid-template-columns: 1fr;
+  }
+}
+.acad-steps-edit {
+  margin: var(--glow-sp-4) 0;
+}
+.acad-steps-edit__row {
+  display: flex;
+  gap: var(--glow-sp-3);
+  align-items: flex-start;
+  border-bottom: 1px solid var(--glow-line);
+  padding: var(--glow-sp-3) 0;
+}
+.acad-steps-edit > .gl-btn {
+  margin-top: var(--glow-sp-3);
+}

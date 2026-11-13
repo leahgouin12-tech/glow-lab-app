@@ -1,0 +1,15 @@
+node_modules/
+dist/
+dev-dist/
+coverage/
+ios/AppBundle/
+ios/build/
+ios/DerivedData/
+ios/GlowLab.xcodeproj/
+ios/*.xcworkspace/
+Payload/
+*.ipa
+.vite/
+*.log
+.DS_Store
+Thumbs.db

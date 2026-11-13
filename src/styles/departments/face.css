@@ -1,0 +1,388 @@
+/* FACIAL AESTHETICS LAB
+   Art direction: a photography contact sheet and a study bench. Dark plate,
+   hairline rules, monospace capture data. The photograph is the only rich
+   surface; everything else is typographic. Tokens only — no new colours. */
+
+.fa-page {
+  display: grid;
+  gap: var(--glow-sp-5);
+}
+
+.fa-intro-status {
+  margin-top: var(--glow-sp-4);
+  padding-top: var(--glow-sp-3);
+  border-top: 1px solid var(--glow-line-metal);
+  color: var(--glow-metal-dim);
+  font-size: 0.68rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+}
+
+.fa-tabs {
+  position: sticky;
+  top: 0;
+  z-index: 3;
+  background: linear-gradient(to bottom, var(--glow-canvas) 72%, transparent);
+  padding-block: var(--glow-sp-2);
+}
+
+/* bench spread: photograph left, instrument rail right -------------------- */
+.fa-editorial {
+  display: grid;
+  gap: var(--glow-sp-5) var(--glow-sp-6);
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+}
+@media (min-width: 1100px) {
+  .fa-editorial {
+    grid-template-columns: minmax(0, 8fr) minmax(0, 4fr);
+  }
+}
+.fa-editorial > div {
+  display: grid;
+  gap: var(--glow-sp-5);
+  align-content: start;
+  min-width: 0;
+}
+.fa-rail {
+  display: grid;
+  gap: var(--glow-sp-5);
+  align-content: start;
+  min-width: 0;
+}
+.fa-railblock {
+  display: grid;
+  gap: var(--glow-sp-3);
+  align-content: start;
+}
+
+/* pose strip -------------------------------------------------------------- */
+.fa-poses {
+  flex-wrap: wrap;
+}
+.fa-poses__n {
+  margin-left: 6px;
+  font-size: 0.62rem;
+  color: var(--glow-text-faint);
+}
+
+.fa-shotline {
+  display: grid;
+  gap: var(--glow-sp-2);
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-3);
+}
+.fa-shot {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  min-height: 44px;
+  padding: var(--glow-sp-3);
+  background: var(--glow-surface-inset);
+  border: 1px solid var(--glow-line);
+  border-left: 3px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-inset);
+}
+.fa-shot[data-on='true'] {
+  border-left-color: var(--glow-champagne, var(--glow-metal));
+  background: var(--glow-interactive);
+}
+.fa-shot .gl-tech {
+  font-size: 0.62rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+}
+
+/* caption under the canvas */
+.fa-caption {
+  display: grid;
+  gap: var(--glow-sp-4);
+  border-top: 1px dashed var(--glow-line-strong);
+  margin-top: var(--glow-sp-4);
+  padding-top: var(--glow-sp-4);
+}
+
+/* guide rail -------------------------------------------------------------- */
+.fa-guide {
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-3);
+  display: grid;
+  gap: var(--glow-sp-3);
+}
+.fa-guide[data-on='true'] {
+  border-top-color: var(--glow-line-metal);
+}
+.fa-guide__line {
+  padding-left: var(--glow-sp-3);
+  border-left: 1px solid var(--glow-line);
+}
+
+.fa-limits {
+  margin: 0;
+  padding-left: 1.1rem;
+  display: grid;
+  gap: 6px;
+}
+
+/* markers --------------------------------------------------------------- */
+.fa-pinlist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+.fa-pin__edit {
+  display: grid;
+  gap: var(--glow-sp-2);
+  border: 1px solid var(--glow-line);
+  border-left: 3px solid var(--glow-metal-dim);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-3);
+}
+.fa-pin__row {
+  display: flex;
+  gap: var(--glow-sp-2);
+  align-items: flex-end;
+}
+.fa-pin__grow {
+  display: grid;
+  gap: 3px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.fa-pin__num {
+  display: grid;
+  gap: 3px;
+  flex: 0 0 84px;
+  min-width: 0;
+}
+.fa-pin__num .gl-tech,
+.fa-pin__grow .gl-tech {
+  font-size: 0.6rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+}
+.fa-pin__note {
+  width: 100%;
+}
+
+/* comparison ------------------------------------------------------------ */
+.fa-condtable {
+  display: grid;
+  gap: var(--glow-sp-3);
+  margin-top: var(--glow-sp-4);
+  overflow-x: auto;
+}
+
+/* feature study --------------------------------------------------------- */
+.fa-studylist {
+  display: grid;
+  gap: 0;
+  border-top: 1px solid var(--glow-line);
+}
+.fa-study {
+  border: 0;
+  border-bottom: 1px solid var(--glow-line);
+  border-radius: 0;
+  background: transparent;
+}
+.fa-study > summary {
+  display: flex;
+  align-items: center;
+  gap: var(--glow-sp-3);
+  flex-wrap: wrap;
+}
+.fa-study__no {
+  font-family: var(--glow-font-tech);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-label);
+  color: var(--glow-text-faint);
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-control);
+  padding: 1px 5px;
+}
+.fa-study__name {
+  font-family: var(--glow-font-display);
+  font-size: 1.16rem;
+  color: var(--glow-text-strong);
+  letter-spacing: var(--glow-tracking-display);
+  flex: 1 1 auto;
+}
+.fa-study__acts {
+  display: flex;
+  gap: var(--glow-sp-3);
+  flex-wrap: wrap;
+  border-top: 1px dashed var(--glow-line);
+  padding-top: var(--glow-sp-3);
+  margin-top: var(--glow-sp-3);
+}
+
+/* observations ---------------------------------------------------------- */
+.fa-prov {
+  display: grid;
+  gap: var(--glow-sp-3);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-4);
+}
+.fa-mediagrid {
+  display: grid;
+  gap: var(--glow-sp-2);
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 190px), 1fr));
+  max-height: 34vh;
+  overflow: auto;
+}
+.fa-mediapick {
+  display: grid;
+  gap: 3px;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  min-height: 44px;
+  padding: var(--glow-sp-3);
+  background: var(--glow-surface);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-tile);
+}
+.fa-mediapick[data-on='true'] {
+  border-color: var(--glow-metal);
+  background: var(--glow-interactive);
+}
+.fa-mediapick .gl-tech {
+  font-size: 0.6rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+}
+
+.fa-obslist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--glow-sp-3);
+}
+.fa-obs {
+  display: grid;
+  gap: var(--glow-sp-2);
+  border-top: 2px solid var(--glow-line-metal);
+  padding-top: var(--glow-sp-3);
+}
+.fa-obs[data-deleted='true'] {
+  opacity: 0.55;
+  border-top-color: var(--glow-line);
+}
+.fa-obs__title {
+  font-size: 1.05rem;
+  color: var(--glow-text-strong);
+}
+.fa-obs__flags {
+  flex-wrap: wrap;
+}
+.fa-obs__media {
+  color: var(--glow-text-faint);
+  font-size: 0.64rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+}
+
+/* saved analysis sets --------------------------------------------------- */
+.fa-hist {
+  align-items: flex-start;
+  gap: var(--glow-sp-4);
+  flex-wrap: wrap;
+}
+.fa-hist__title {
+  font-size: 1.08rem;
+  color: var(--glow-text-strong);
+}
+.fa-hist__meta {
+  font-size: 0.64rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+}
+.fa-hist__body {
+  margin-top: 6px;
+  max-width: var(--glow-reading-max);
+}
+
+/* styling opportunities ------------------------------------------------- */
+.fa-stylelist {
+  display: grid;
+  gap: var(--glow-sp-4);
+}
+.fa-style {
+  display: grid;
+  gap: var(--glow-sp-3);
+  border-top: 2px solid var(--glow-line-metal);
+  padding-top: var(--glow-sp-4);
+}
+.fa-style__head {
+  display: flex;
+  gap: var(--glow-sp-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+.fa-style__title {
+  font-size: 1.15rem;
+  color: var(--glow-text-strong);
+  margin-right: var(--glow-sp-2);
+}
+
+/* experiment sheet ------------------------------------------------------ */
+.fa-exp {
+  display: grid;
+  gap: var(--glow-sp-4);
+  border-top: 2px solid var(--glow-line-metal);
+  margin-top: var(--glow-sp-4);
+  padding-top: var(--glow-sp-4);
+}
+.fa-log,
+.fa-loglist {
+  display: grid;
+  gap: var(--glow-sp-3);
+}
+.fa-loglist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.fa-loglist li {
+  display: flex;
+  gap: var(--glow-sp-3);
+  align-items: baseline;
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: var(--glow-sp-2);
+}
+.fa-loglist .gl-tech {
+  flex: none;
+  color: var(--glow-text-faint);
+  font-size: 0.66rem;
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+}
+
+.fa-footer-note {
+  border-top: 2px solid var(--glow-line-metal);
+  margin-top: var(--glow-sp-7);
+  padding-top: var(--glow-sp-5);
+}
+
+@media (max-width: 380px) {
+  .fa-pin__row {
+    flex-wrap: wrap;
+  }
+  .fa-pin__num {
+    flex: 1 1 100%;
+  }
+}

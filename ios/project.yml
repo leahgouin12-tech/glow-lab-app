@@ -1,0 +1,98 @@
+# XcodeGen spec — the iOS wrapper for THE GLOW LAB.
+#
+# Nothing here is signed, built or installed on this machine: this file and the
+# Swift sources are the recipe, and running it needs Xcode on macOS. See
+# IOS_ALTSTORE.md for the whole sequence, including the GitHub Actions route for
+# anyone without a Mac.
+#
+#   brew install xcodegen
+#   npm run build && npm run ios:prepare
+#   cd ios && xcodegen generate && open GlowLab.xcodeproj
+#
+# Then build for a device with your own Apple ID. Do not type that Apple ID's
+# password into a shared machine or a CI secret unless you have decided the
+# trade-off yourself — the shipped CI workflow builds an unsigned .ipa precisely
+# so that no account has to be handed to a runner.
+
+name: GlowLab
+options:
+  bundleIdPrefix: com.glowlab
+  deploymentTarget:
+    iOS: '16.4'
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+settings:
+  base:
+    SWIFT_VERSION: '5.9'
+    ENABLE_USER_SCRIPT_SANDBOXING: 'NO'
+    MARKETING_VERSION: '0.7.0'
+    CURRENT_PROJECT_VERSION: '1'
+
+# Declared explicitly because the CI workflow builds with `-scheme GlowLab` and
+# a scheme that only exists as a per-user Xcode file is not there on a runner.
+schemes:
+  GlowLab:
+    build:
+      targets:
+        GlowLab: all
+    archive:
+      config: Release
+
+targets:
+  GlowLab:
+    type: application
+    platform: iOS
+    productName: GlowLab
+    sources:
+      - path: Sources
+      # The built web app, copied in by `npm run ios:prepare`. It ships inside
+      # the bundle and is served from it, so the app works with no network at
+      # all — the service worker is a bonus here, not a requirement.
+      - path: AppBundle/www
+        name: www
+        buildPhase: resources
+      - path: Assets.xcassets
+        name: Assets
+    info:
+      path: Support/Info.plist
+      properties:
+        CFBundleDisplayName: Glow Lab
+        CFBundleIdentifier: com.glowlab.iphone
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        CFBundlePackageType: APPL
+        LSRequiresIPhoneOS: true
+        UILaunchScreen: {}
+        UIRequiredDeviceCapabilities:
+          - arm64
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UISupportedInterfaceOrientations~ipad:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        # The wrapper only ever touches the camera and the photo library when
+        # she taps a capture control, and always through the system picker.
+        NSCameraUsageDescription: Glow Lab opens the camera when you tap Take a photo, so a garment or a progress shot goes into your own records.
+        NSPhotoLibraryUsageDescription: Glow Lab lets you choose photographs you already took, so your closet and your progress series can be built from your own pictures.
+        # Nothing here encrypts beyond what WebKit does itself, and no personal
+        # data leaves the device.
+        ITSAppUsesNonExemptEncryption: false
+        # Plain HTTP is never used; the app is served from the bundle over the
+        # custom `glowlab` scheme.
+        NSAppTransportSecurity:
+            NSAllowsArbitraryLoads: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.glowlab.iphone
+        PRODUCT_NAME: GlowLab
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        CODE_SIGN_STYLE: Automatic
+        TARGETED_DEVICE_FAMILY: '1,2'
+        # Storage persistence is requested at runtime with
+        # navigator.storage.persist() (see IOS_ALTSTORE.md); there is no build
+        # setting that opts a WKWebView container out of eviction.

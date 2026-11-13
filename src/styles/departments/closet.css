@@ -1,0 +1,328 @@
+/* DEPT 14 · STYLE & DIGITAL CLOSET — campaign art direction.
+   Warm plate surfaces, hairline verticals, a dense pin wall. */
+
+.cl-page .gl-intro--campaign {
+  margin-bottom: var(--glow-sp-5);
+}
+
+.cl-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--glow-sp-3);
+  padding: var(--glow-sp-3) 0;
+  border-top: 1px solid var(--glow-line);
+  border-bottom: 1px solid var(--glow-line);
+  margin-bottom: var(--glow-sp-5);
+}
+
+.cl-search {
+  flex: 1 1 240px;
+  min-width: 200px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cl-pins {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 172px), 1fr));
+  gap: var(--glow-sp-3);
+}
+
+.cl-pins .gl-pin {
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-tile);
+}
+
+.cl-facts {
+  display: grid;
+  gap: 2px;
+  background: var(--glow-line);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-card);
+  overflow: hidden;
+}
+
+.cl-facts > div {
+  background: var(--glow-surface);
+  padding: var(--glow-sp-3);
+}
+
+.cl-cpw {
+  font-family: var(--glow-font-tech);
+  font-variant-numeric: tabular-nums;
+  color: var(--glow-champagne);
+}
+
+.cl-cpw--unknown {
+  color: var(--glow-text-faint);
+  font-style: italic;
+}
+
+.cl-gap {
+  border-left: 2px solid color-mix(in srgb, var(--glow-accent-soft) 60%, transparent);
+  padding-left: var(--glow-sp-3);
+  margin-bottom: var(--glow-sp-3);
+}
+
+.cl-pick {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+  gap: 1px;
+  background: var(--glow-line);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  overflow: hidden;
+  max-height: 320px;
+  overflow-y: auto;
+}
+
+.cl-pick button {
+  background: var(--glow-surface);
+  border: 0;
+  text-align: left;
+  padding: 9px var(--glow-sp-3);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cl-pick button[data-on='true'] {
+  background: color-mix(in srgb, var(--glow-accent) 42%, var(--glow-surface-raised));
+  color: var(--glow-text-strong);
+}
+
+.cl-swatch {
+  width: 14px;
+  height: 14px;
+  border-radius: 2px;
+  border: 1px solid var(--glow-line-strong);
+  display: inline-block;
+}
+
+.cl-swatchrow {
+  display: inline-flex;
+  gap: 3px;
+  flex-wrap: wrap;
+}
+
+.cl-wearbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+  align-items: center;
+}
+
+/* Possible duplicates — two columns facing each other over a hairline. */
+
+.cl-dups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-4);
+}
+
+.cl-dup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+  border: 1px solid var(--glow-line);
+  border-left: 2px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-4);
+}
+
+.cl-dup__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--glow-sp-3);
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: var(--glow-sp-2);
+}
+
+.cl-dup__title {
+  font-size: 1.05rem;
+  color: var(--glow-text-strong);
+}
+
+.cl-dup__sides {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 1px;
+  background: var(--glow-line);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  overflow: hidden;
+}
+
+.cl-dup__side {
+  background: var(--glow-surface);
+  padding: var(--glow-sp-3);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.cl-dup__side[data-keeper='true'] {
+  background: color-mix(in srgb, var(--glow-champagne) 8%, var(--glow-surface));
+}
+
+.cl-dup__name {
+  font-size: 1rem;
+  color: var(--glow-text-strong);
+}
+
+.cl-dup__axes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px var(--glow-sp-3);
+  font-family: var(--glow-font-tech);
+  font-size: 0.72rem;
+  color: var(--glow-text-secondary);
+}
+
+.cl-dup__axes em {
+  font-style: normal;
+  color: var(--glow-text-faint);
+}
+
+.cl-dup__why {
+  margin: 0 0 0 18px;
+  padding: 0;
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+
+.cl-dup__pixel {
+  border-top: 1px dashed var(--glow-line-strong);
+  padding-top: var(--glow-sp-2);
+  color: var(--glow-text-secondary);
+}
+
+.cl-dup__arrival {
+  border-left: 2px solid var(--glow-info);
+  padding-left: var(--glow-sp-3);
+  margin-bottom: var(--glow-sp-4);
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+
+.cl-dup__photos {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  margin-top: var(--glow-sp-5);
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-4);
+}
+
+.cl-dup__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+  gap: var(--glow-sp-3);
+}
+
+.cl-dup__photo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-tile);
+  background: var(--glow-surface-sunken);
+  padding: var(--glow-sp-3);
+}
+
+.cl-dup__photoRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+  align-items: baseline;
+}
+
+/* ------------------------------------------------ the look-alike review walk */
+
+.cl-review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-tile);
+  background: var(--glow-surface-sunken);
+  padding: var(--glow-sp-4);
+  margin-bottom: var(--glow-sp-5);
+}
+
+.cl-review__bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-3);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cl-review__where {
+  font-size: var(--glow-text-subtitle);
+}
+
+.cl-review__progress {
+  flex-wrap: wrap;
+}
+
+.cl-review__pair .cl-dup {
+  border-color: var(--glow-line);
+}
+
+.cl-review__merge {
+  border-left: 2px solid var(--glow-info);
+  padding-left: var(--glow-sp-3);
+}
+
+.cl-review__decide {
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-3);
+}
+
+/* -------------------------------------------- the coverage-hole tagging pass */
+
+.cl-coverage__assist {
+  text-align: left;
+}
+
+.cl-assist__step {
+  font-size: var(--glow-text-subtitle);
+}
+
+.cl-assist__nophoto {
+  width: 148px;
+  flex: 0 0 148px;
+  min-height: 84px;
+  display: grid;
+  place-items: center;
+}
+
+.cl-assist__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 220px;
+}
+
+.cl-assist__name {
+  font-size: var(--glow-text-subtitle);
+}
+
+.cl-assist__choices {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-2);
+  border-top: 1px solid var(--glow-line);
+  padding-top: var(--glow-sp-3);
+}

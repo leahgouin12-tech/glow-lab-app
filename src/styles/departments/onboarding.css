@@ -1,0 +1,206 @@
+.gl-onb {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  background: var(--glow-canvas);
+  color: var(--glow-text);
+}
+.gl-onb__side {
+  border-right: 1px solid var(--glow-line);
+  background: var(--glow-surface);
+  padding: var(--glow-sp-6) var(--glow-sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-5);
+}
+.gl-onb__mark {
+  font-family: var(--glow-font-display);
+  font-size: 1.35rem;
+  letter-spacing: 0.2em;
+  color: var(--glow-text-strong);
+}
+.gl-onb__steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.gl-onb__steps button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--glow-sp-3);
+  padding: 10px 12px;
+  background: none;
+  border: 0;
+  border-left: 2px solid transparent;
+  color: var(--glow-text-muted);
+  font: inherit;
+  font-size: var(--glow-text-small);
+  text-align: left;
+  cursor: pointer;
+}
+.gl-onb__steps button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.gl-onb__steps li[data-active='true'] button {
+  border-left-color: var(--glow-accent-soft);
+  background: var(--glow-surface-raised);
+  color: var(--glow-text-strong);
+}
+.gl-onb__steps li[data-done='true'] button {
+  color: var(--glow-text-secondary);
+}
+.gl-onb__no {
+  color: var(--glow-metal-dim);
+  font-size: 0.66rem;
+}
+.gl-onb__fine {
+  margin-top: auto;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  color: var(--glow-text-faint);
+}
+.gl-onb__main {
+  padding: clamp(var(--glow-sp-6), 6vw, 76px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-5);
+  max-width: 1080px;
+}
+.gl-onb__title {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  line-height: 1.04;
+  margin: 0;
+}
+.gl-onb__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-5);
+}
+.gl-onb__list {
+  margin: var(--glow-sp-3) 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+.gl-onb__list li {
+  padding-left: 16px;
+  position: relative;
+}
+.gl-onb__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 6px;
+  height: 6px;
+  background: var(--glow-accent-soft);
+}
+.gl-onb__list--no li::before {
+  background: var(--glow-warn);
+}
+.gl-onb__themes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  gap: var(--glow-sp-4);
+}
+.gl-onb__theme {
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: var(--glow-sp-3);
+  padding: var(--glow-sp-4);
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface);
+  color: var(--glow-text);
+  cursor: pointer;
+  transition: border-color var(--glow-dur-2) var(--glow-ease), transform var(--glow-dur-2) var(--glow-ease);
+}
+.gl-onb__theme:hover {
+  transform: translateY(-2px);
+}
+.gl-onb__theme[data-on='true'] {
+  border-color: var(--glow-metal);
+  box-shadow: var(--glow-el-2);
+}
+.gl-onb__theme-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--glow-sp-2);
+}
+.gl-onb__theme-head strong {
+  font-size: 1.15rem;
+  color: var(--glow-text-strong);
+}
+.gl-onb__mood {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-family: var(--glow-font-tech);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+}
+.gl-onb__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-2);
+}
+.gl-onb__foot {
+  margin-top: auto;
+  padding-top: var(--glow-sp-5);
+  border-top: 1px solid var(--glow-line);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--glow-sp-3);
+  flex-wrap: wrap;
+}
+@media (max-width: 880px) {
+  .gl-onb {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .gl-onb__side,
+  .gl-onb__main {
+    min-width: 0;
+  }
+  .gl-onb__side {
+    border-right: 0;
+    border-bottom: 1px solid var(--glow-line);
+    padding: var(--glow-sp-5) var(--glow-sp-4);
+    gap: var(--glow-sp-4);
+  }
+  .gl-onb__steps {
+    flex-direction: row;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .gl-onb__steps button {
+    border-left: 0;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+  }
+  .gl-onb__steps li[data-active='true'] button {
+    border-bottom-color: var(--glow-accent-soft);
+  }
+  .gl-onb__no {
+    display: none;
+  }
+  .gl-onb__fine {
+    display: none;
+  }
+  .gl-onb__main {
+    padding: var(--glow-sp-5) var(--glow-sp-4) var(--glow-sp-8);
+  }
+}

@@ -1,0 +1,217 @@
+/* DEPT 19 · DENTAL — masthead art direction: clinical ledger, tabular columns, stamped forms. */
+
+.dt-page .gl-intro--masthead {
+  margin-bottom: var(--glow-sp-5);
+}
+
+.dt-toolbar {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) 200px;
+  gap: var(--glow-sp-4);
+  align-items: end;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-card);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-4);
+}
+
+.dt-search {
+  margin: 0;
+}
+@media (max-width: 700px) {
+  .dt-toolbar {
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+  }
+}
+
+.dt-legend {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 4px var(--glow-sp-4);
+  border-top: 1px dashed var(--glow-line-strong);
+  padding-top: var(--glow-sp-3);
+  color: var(--glow-text-muted);
+  font-size: var(--glow-text-micro);
+  line-height: 1.45;
+}
+
+.dt-legend b {
+  color: var(--glow-text-secondary);
+  font-weight: 600;
+}
+
+.dt-num {
+  font-family: var(--glow-font-tech);
+  font-variant-numeric: tabular-nums;
+  color: var(--glow-text-strong);
+}
+
+.dt-flags {
+  margin: var(--glow-sp-2) 0 0;
+  padding-left: var(--glow-sp-4);
+  display: grid;
+  gap: 3px;
+  color: var(--glow-text-secondary);
+}
+
+.dt-after {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--glow-sp-3);
+}
+
+.dt-after__text {
+  margin: 0;
+  color: var(--glow-text-body);
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.dt-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(232px, 1fr));
+  gap: var(--glow-sp-3);
+}
+
+.dt-plan {
+  display: grid;
+  gap: var(--glow-sp-2);
+  align-content: start;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-surface-raised);
+  padding: var(--glow-sp-3);
+}
+
+.dt-plan__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--glow-sp-2);
+}
+
+.dt-next {
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-card);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--glow-accent) 16%, var(--glow-surface)) 0%, var(--glow-surface) 60%);
+  padding: var(--glow-sp-4);
+}
+
+.dt-qs {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+
+.dt-q {
+  border: 1px solid var(--glow-line);
+  border-left: 2px solid var(--glow-line-strong);
+  border-radius: 0 var(--glow-r-inset) var(--glow-r-inset) 0;
+  background: var(--glow-surface);
+  padding: var(--glow-sp-3);
+}
+
+.dt-q[data-asked='true'] {
+  border-left-color: var(--glow-ok);
+  background: var(--glow-surface-inset);
+}
+
+.dt-q__head {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--glow-sp-3);
+}
+
+.dt-q__check {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--glow-r-pill);
+  border: 1px solid var(--glow-line-strong);
+  background: transparent;
+  color: var(--glow-text-muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background var(--glow-dur-1) var(--glow-ease), color var(--glow-dur-1) var(--glow-ease);
+}
+
+.dt-q__check[aria-pressed='true'] {
+  background: var(--glow-ok);
+  border-color: var(--glow-ok);
+  color: var(--glow-text-inverse);
+}
+
+.dt-q__text {
+  flex: 1;
+  color: var(--glow-text-strong);
+  line-height: 1.4;
+}
+
+.dt-q[data-asked='true'] .dt-q__text {
+  color: var(--glow-text-secondary);
+  text-decoration: line-through;
+  text-decoration-color: var(--glow-line-strong);
+}
+
+.dt-q__answer {
+  margin: var(--glow-sp-2) 0 0;
+  padding-left: var(--glow-sp-3);
+  border-left: 2px solid var(--glow-metal-dim);
+  color: var(--glow-text-body);
+  white-space: pre-wrap;
+}
+
+.dt-meter {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+
+.dt-ref {
+  border: 1px solid var(--glow-line-strong);
+  border-left: 3px solid var(--glow-warn);
+  border-radius: 0 var(--glow-r-card) var(--glow-r-card) 0;
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-4);
+}
+
+.dt-ref[data-safety='unsafe'] {
+  border-left-color: var(--glow-bad);
+}
+
+.dt-ref[data-safety='caution'] {
+  border-left-color: var(--glow-warn);
+}
+
+.dt-ref[data-safety='ok'] {
+  border-left-color: var(--glow-ok);
+}
+
+.dt-ref__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--glow-sp-4);
+}
+
+.dt-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--glow-sp-3);
+  align-items: flex-start;
+}
+
+@media (max-width: 720px) {
+  .dt-toolbar {
+    grid-template-columns: 1fr;
+  }
+
+  .dt-plans,
+  .dt-ref__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dt-legend {
+    grid-template-columns: 1fr;
+  }
+}

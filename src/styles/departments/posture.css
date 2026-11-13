@@ -1,0 +1,208 @@
+/* DEPT 18 · POSTURE & PRESENTATION — plate art direction: reset cards, tally rails, quiet rules. */
+
+.ps-page .gl-intro--plate {
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-plate);
+  background: var(--glow-surface-sunken);
+  padding: var(--glow-sp-5);
+  margin-bottom: var(--glow-sp-5);
+}
+
+/* stacked form controls inside a card */
+.ps-form {
+  display: grid;
+  gap: var(--glow-sp-3);
+}
+
+/* the reset checklist */
+.ps-steps {
+  display: grid;
+  gap: 6px;
+}
+
+.ps-step {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: var(--glow-sp-3);
+  align-items: start;
+  text-align: left;
+  border: 1px solid var(--glow-line);
+  border-radius: var(--glow-r-inset);
+  background: var(--glow-surface-inset);
+  padding: var(--glow-sp-3);
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+}
+
+.ps-step[data-on='true'] {
+  border-color: var(--glow-line-gold, var(--glow-line-strong));
+  background: color-mix(in srgb, var(--glow-accent-soft) 12%, var(--glow-surface-inset));
+}
+
+.ps-step__box {
+  width: 18px;
+  height: 18px;
+  margin-top: 2px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--glow-line-strong);
+  border-radius: var(--glow-r-control);
+  color: var(--glow-text-strong);
+}
+
+.ps-step__label {
+  display: block;
+  font-size: var(--glow-text-body);
+  color: var(--glow-text-strong);
+}
+
+.ps-step__detail {
+  display: block;
+  margin-top: 3px;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-muted);
+}
+
+/* routine cards */
+.ps-steplist {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+
+.ps-steplist__row {
+  display: grid;
+  grid-template-columns: 26px 1fr;
+  gap: var(--glow-sp-2);
+  align-items: baseline;
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: 6px;
+}
+
+.ps-steplist__detail {
+  display: block;
+  font-size: var(--glow-text-micro);
+  color: var(--glow-text-faint);
+}
+
+/* drill cards */
+.ps-drill {
+  padding: var(--glow-sp-2) 0 0;
+}
+
+.ps-caution {
+  border-left: 2px solid var(--glow-warn);
+  padding-left: var(--glow-sp-3);
+}
+
+/* lesson pitfalls rail */
+.ps-cues {
+  display: grid;
+  gap: 6px;
+  margin-top: var(--glow-sp-3);
+}
+
+.ps-cues__item {
+  display: flex;
+  gap: var(--glow-sp-2);
+  align-items: baseline;
+  font-size: var(--glow-text-small);
+  color: var(--glow-text-secondary);
+}
+
+/* photo album */
+.ps-media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: var(--glow-sp-3);
+}
+
+/* note rails */
+.ps-notes {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+
+.ps-notes__row {
+  display: grid;
+  grid-template-columns: 92px 1fr 28px;
+  gap: var(--glow-sp-3);
+  align-items: start;
+  border-bottom: 1px solid var(--glow-line);
+  padding-bottom: var(--glow-sp-2);
+}
+
+.ps-notes__meta {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--glow-font-ui);
+  font-size: var(--glow-text-micro);
+  letter-spacing: var(--glow-tracking-label);
+  text-transform: uppercase;
+  color: var(--glow-text-faint);
+}
+
+.ps-heatwrap {
+  display: grid;
+  gap: var(--glow-sp-2);
+}
+
+/* evidence rows, bordered by their own safety grade */
+.ps-ref {
+  border-left: 2px solid var(--glow-line-strong);
+  padding-left: var(--glow-sp-4);
+}
+
+.ps-ref[data-safety='unsafe'] {
+  border-left-color: var(--glow-bad);
+}
+
+.ps-ref[data-safety='caution'] {
+  border-left-color: var(--glow-warn);
+}
+
+.ps-flags {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 4px;
+  font-size: var(--glow-text-small);
+}
+
+.ps-audit-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: var(--glow-sp-3);
+}
+
+/* routine step editor */
+.ps-steps-editor {
+  display: grid;
+  gap: var(--glow-sp-2);
+  margin-bottom: var(--glow-sp-3);
+}
+
+.ps-step-edit {
+  display: grid;
+  grid-template-columns: 24px 1fr 1fr 32px;
+  gap: 6px;
+  align-items: center;
+}
+
+.ps-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--glow-sp-2);
+  margin-top: var(--glow-sp-5);
+}
+
+@media (max-width: 720px) {
+  .ps-step-edit {
+    grid-template-columns: 24px 1fr 32px;
+  }
+
+  .ps-notes__row {
+    grid-template-columns: 84px 1fr 28px;
+  }
+}
