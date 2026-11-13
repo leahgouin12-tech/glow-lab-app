@@ -13,7 +13,8 @@
     "test:watch": "vitest",
     "ios:assets": "node scripts/make-ios-assets.mjs",
     "ios:prepare": "node scripts/make-ios-assets.mjs && node scripts/ios-prepare.mjs",
-    "ios:check": "node scripts/altstore-check.mjs"
+    "ios:check": "node scripts/altstore-check.mjs",
+    "ios:mirror": "node scripts/make-mirror.mjs"
   },
   "dependencies": {
     "@fontsource-variable/manrope": "^5.1.0",

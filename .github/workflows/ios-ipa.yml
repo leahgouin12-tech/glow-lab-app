@@ -46,7 +46,11 @@ concurrency:
 jobs:
   ipa:
     name: Build unsigned .ipa
-    runs-on: macos-14
+    # Not macos-14: that image is retired, and a job asking for it is cancelled
+    # the instant it is created — no runner, no log, nothing to read but
+    # "cancelled". Measured 2026-11-13 by running macos-14, macos-15 and
+    # macos-latest side by side: the first vanished, the other two queued.
+    runs-on: macos-latest
     timeout-minutes: 30
     env:
       CONFIGURATION: ${{ github.event.inputs.configuration || 'Release' }}
